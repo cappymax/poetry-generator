@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.ktim1435.AppTest" time="0.004" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.ktim1435.AppTest" time="0.003" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_91\jre\bin"/>
@@ -27,7 +27,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Users\Maximalist\Desktop\Allamvizsga\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf3214897945140036348.tmp"/>
+    <property name="classworlds.conf" value="C:\Users\Maximalist\Desktop\Allamvizsga\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf2365206021907443891.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_91\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk1.8.0_91/bin/../jre/bin/server;C:/Program Files/Java/jdk1.8.0_91/bin/../jre/bin;C:/Program Files/Java/jdk1.8.0_91/bin/../jre/lib/amd64;C:\MinGW\bin;C:\Program Files (x86)\Tecplot\Tec360\Bin;C:\Program Files\Java\jdk1.8.0_91\bin;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\7.10.2-a\lib\extralibs\bin;C:\Program Files\Haskell Platform\7.10.2-a\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Haskell Platform\7.10.2-a\mingw\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files\MATLAB\MATLAB Production Server\R2015a\runtime\win64;C:\Program Files\MATLAB\MATLAB Production Server\R2015a\bin;C:\Program Files\MATLAB\MATLAB Production Server\R2015a\polyspace\bin;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\FPC\2.6.4\bin\i386-Win32;C:\Program Files\TortoiseGit\bin;C:\Program Files\OpenVPN\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\GnuWin32\bin;E:\Programming\IDDE\build tools\apache-maven-3.3.9\bin;C:\Program Files\nodejs\;C:\GnuWin32\bin\;E:\qtgrace_windows_binary\bin;C:\Program Files\Java\jdk1.8.0_91\bin;C:\Users\Maximalist\AppData\Roaming\cabal\bin;C:\Users\Maximalist\AppData\Local\Microsoft\WindowsApps;E:\Programming\IDDE\build tools\apache-ant-1.9.7\bin;C:\Users\Maximalist\AppData\Roaming\npm;C:\eclipse;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -61,5 +61,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.ktim1435.AppTest" name="testApp" time="0.004"/>
+  <testcase classname="com.ktim1435.AppTest" name="testApp" time="0.003"/>
 </testsuite>

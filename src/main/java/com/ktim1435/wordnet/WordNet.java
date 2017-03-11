@@ -24,7 +24,7 @@ public class WordNet {
 	 */
 	public WordNet() {
 		try {
-			inputFile = new File("src/main/resources/huwn.xml");
+			inputFile = new File("huwn.xml");
 			dbFactory = DocumentBuilderFactory.newInstance();
 			dBuilder = dbFactory.newDocumentBuilder();
 			doc = dBuilder.parse(inputFile);
