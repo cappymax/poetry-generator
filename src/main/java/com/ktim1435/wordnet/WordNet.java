@@ -41,7 +41,7 @@ public class WordNet {
 		for (int i = 0; i < list.getLength(); i++) {
 			String type = list.item(i).getParentNode().getParentNode().getChildNodes().item(0).getTextContent().split("-")[2];
 			String content = list.item(i).getTextContent().split("[0-9]")[0];
-			if (content.indexOf('(') == -1) {
+			if (content.indexOf('(') == -1 && content.indexOf('_') == -1) {
 				if (type.equals("n")) {
 					nouns.add(content);
 				} else if (type.equals("v")) {
@@ -111,6 +111,7 @@ public class WordNet {
 	 * @throws Exception
 	 */
 	public String getType(String word) throws Exception {
+		word = word.toLowerCase();
 		if (nouns.contains(word))
 			return "Noun";
 		if (verbs.contains(word))

@@ -23,6 +23,22 @@ public class Verse implements PoeticElement {
 		}
 		lines = Gramatics.correctLines(lines);
 	}
+	
+	public Verse(Verse verse) {
+		int index = 0;
+		String oneLine = "";
+		String newVerse = verse.toString();
+		
+		newVerse += Gramatics.END_OF_LINE;
+		while (!newVerse.isEmpty()) {
+			index = newVerse.indexOf(Gramatics.END_OF_LINE);
+			oneLine = newVerse.substring(0, index);
+			lines.add(new Line(oneLine));
+
+			newVerse = newVerse.substring(index + 1, newVerse.length());
+		}
+		lines = Gramatics.correctLines(lines);
+	}
 
 	public String getLines() {
 		String combinedLines = "";
@@ -34,10 +50,12 @@ public class Verse implements PoeticElement {
 
 	public void addLine(Line newLine) {
 		lines.add(newLine);
+		lines = Gramatics.correctLines(lines);
 	}
 
 	public void addLines(Collection<Line> newLines) {
 		lines.addAll(newLines);
+		lines = Gramatics.correctLines(lines);
 	}
 
 	public String toString() {
