@@ -12,11 +12,15 @@ public class App
 {
     public static void main( String[] args )
     {
-    	ArrayList<Verse> verses = GeneticAlgorithm.getOneGeneration();
-    	for (Verse v:verses) {
-        	System.out.println(v + "\n");
-    	}
+//    	ArrayList<Verse> verses = GeneticAlgorithm.getOneGeneration();
+//    	for (Verse v:verses) {
+//        	System.out.println(v + "\n");
+//    	}
 
+    	WordNet wn = new WordNet();
+    	wn.createSentenceFile();
+
+    	
     	//Poem p = new Poem("Az ipafai      papnak\nfapipaja van,\nezert az ipafai fapipa,\npapi fapipa.");
         //System.out.println(p);
     }
