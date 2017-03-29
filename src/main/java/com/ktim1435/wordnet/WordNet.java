@@ -305,8 +305,7 @@ public class WordNet {
 		word = word.replace("ú", "u");
 		word = word.replace("ü", "u");
 		word = word.replace("ű", "u");
-
-
+		word = word.replace("í", "i"); 
 		return word;
 	}
 	

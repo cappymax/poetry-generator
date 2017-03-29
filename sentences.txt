@@ -193,7 +193,7 @@ Noun Noun Adjective
 Article Noun Noun Noun Verb 
 Article Noun Noun Noun 
 Article Noun Verb Article Noun 
-Noun Verb Noun Adverb 
+Verb Verb Noun Adverb 
 Article Noun Adverb Verb 
 Noun Noun Verb Noun Article Noun 
 Article Noun N\A Noun Verb 
@@ -271,7 +271,7 @@ N\A Adverb Article Noun Verb Adverb
 Article Noun Adverb Adverb Noun 
 Article Noun Noun Adjective Adjective 
 Article Noun Adverb Verb 
-Article Noun Noun Verb 
+Article Noun Noun Noun 
 Adverb Noun Article Noun 
 Article Noun Verb Verb Article Noun 
 Article Noun Noun Verb 
@@ -425,7 +425,7 @@ Noun Adjective Article Noun Noun
 Article Noun Noun Adjective Article Noun 
 Noun Verb Article Noun Noun Adjective 
 Article Noun Noun Noun Adjective Adverb 
-Noun Noun Article Noun Noun 
+Adjective Noun Article Noun Noun 
 Verb Adverb Noun Noun 
 Article Noun Noun Noun Verb 
 Verb Adjective Article Noun Noun 
@@ -1114,7 +1114,7 @@ Noun Noun Verb Article Noun
 Article Noun Verb Adverb Noun 
 Noun Adjective Noun Noun 
 Adjective Noun Adverb Noun Adjective Noun 
-Noun Verb Verb Article Noun 
+Noun Noun Verb Article Noun 
 Noun Article Noun Noun Verb 
 Article Noun Noun Article Noun 
 Adverb Verb Noun Noun Article Noun 
@@ -2760,7 +2760,7 @@ Adjective Noun Noun Article Noun
 Article Noun Noun N\A 
 Adjective Noun Noun Noun Noun Verb 
 Article Noun Noun Verb 
-Article Noun Adjective Noun Noun 
+Article Noun Adjective Verb Noun 
 Article Adjective Noun Article Adjective 
 Article Noun Noun Verb 
 Article Noun Noun Verb 
@@ -3177,7 +3177,7 @@ Article Noun Noun Verb Noun
 Article Noun Noun Verb 
 Noun Noun Verb Article Adjective Noun 
 Article Noun Noun Noun Noun N\A 
-Verb Noun Pronoun Noun Adverb 
+Verb Noun Pronoun Adverb Adverb 
 Article Noun Adjective Noun Noun Adjective 
 Article Noun Noun Adverb Noun 
 Adjective Noun Adjective Article Noun 
@@ -3918,7 +3918,7 @@ Article Noun Noun Verb Adjective Noun
 Noun Verb Article Noun Noun Noun 
 Article Noun Noun Verb Article Noun 
 Adjective Noun Verb Article Noun 
-Noun Noun Noun Noun N\A Noun 
+Adverb Noun Noun Noun N\A Noun 
 Article Noun Verb Verb 
 Adverb Verb Article Noun 
 Verb Article Noun 
@@ -4358,7 +4358,7 @@ Article Noun Noun Verb Verb
 Verb Noun Article Verb 
 Article Noun Verb Noun Article Noun 
 N\A Verb Article Adverb Noun Noun 
-Article Noun Verb 
+Article Noun Noun 
 Adjective Article Noun Adverb Noun Adverb 
 Article Adjective Noun Adjective Noun Verb 
 Verb Noun Verb Noun Noun 
@@ -4581,7 +4581,7 @@ Adverb N\A Noun Verb Verb
 Noun Article Adverb Noun Noun 
 Article Adjective Verb 
 Verb Article Noun Noun 
-Verb Article Noun 
+Noun Article Noun 
 Pronoun Article Noun Noun Noun 
 Adjective Verb Article Adjective Noun 
 Article Noun Adjective Verb Noun 
@@ -4986,7 +4986,7 @@ Noun Article Noun Verb
 Article Noun Noun Article Noun Adjective 
 Article Noun Verb Article Noun Noun 
 Noun Adverb Article Noun Noun 
-Noun Article Noun Adjective Adverb Verb 
+Noun Article Noun Adjective Adverb Adjective 
 Noun Verb Noun Article Noun 
 Article Noun Noun Noun Article Noun 
 Adverb Article Noun 
@@ -5924,7 +5924,7 @@ Verb Noun Noun
 Adjective Noun Verb Noun 
 Noun Verb Article Noun 
 Article Noun Noun Verb Verb 
-Noun Noun Verb N\A Article Noun 
+Noun Noun Noun N\A Article Noun 
 Article Noun Noun Noun Verb Verb 
 Article Noun Verb Article Noun 
 Article Noun Verb Article Noun 
@@ -6019,7 +6019,7 @@ Noun Noun Adverb Article Noun Noun
 Article Noun Verb Article Noun 
 Article Noun Verb Article Noun 
 Article Noun Noun Verb 
-Adverb Noun Adverb N\A Article Noun 
+Adverb Verb Adverb N\A Article Noun 
 Adjective Noun Verb Article Noun 
 N\A Noun Verb 
 N\A Noun N\A Noun Verb Adverb 
@@ -6112,7 +6112,7 @@ Verb Article Noun
 Article Noun Verb Article Noun 
 Adjective Adjective Verb Noun Noun 
 Adverb Verb Noun Noun 
-Verb N\A Adverb Article Noun 
+Verb N\A Adverb Article Adverb 
 Noun Noun Adjective Verb Verb Pronoun 
 Noun Verb N\A Article Noun 
 Noun Noun Verb Adverb Noun 
@@ -6344,7 +6344,7 @@ Article Noun Noun Verb N\A Noun
 Article Noun Noun Article Noun Verb 
 Article Noun Article Noun Verb 
 Article Adjective Noun Article Noun Verb 
-Verb Article Noun Article Noun 
+Verb Article Noun Article Verb 
 Article Noun Verb Article Noun Noun 
 N\A Verb Noun Article Adjective Noun 
 Noun Verb Article Verb Verb 
@@ -6469,7 +6469,7 @@ N\A Adverb Verb
 Article Noun Article Noun Noun Adverb 
 Article Noun Noun Verb 
 Verb Verb Verb Article Noun 
-Noun Verb Verb Article Noun 
+Noun Noun Verb Article Noun 
 Verb Article Noun 
 Verb Noun Article Noun Verb 
 Noun Adverb Adverb Adjective Adverb 
@@ -6672,7 +6672,7 @@ Verb Verb Article Noun
 N\A Noun Noun Noun Verb 
 Article Noun Noun N\A Verb Adverb 
 N\A Article Noun Verb Noun 
-Article Noun Verb Article Noun Noun 
+Article Noun Noun Article Noun Noun 
 Article Noun Verb Article Noun 
 Verb Article Noun Article Noun 
 Verb Article Noun Noun Noun 
@@ -7133,7 +7133,7 @@ Adjective Noun Noun Adjective
 Adjective Noun Verb Adverb Article Noun 
 Article Adjective Noun Noun Noun 
 Article Adjective Verb Adjective Noun Verb 
-Noun Noun Noun Verb Noun Noun 
+Noun Noun Verb Verb Noun Noun 
 Noun Article Adjective Noun Noun 
 Adjective Noun Noun 
 Article Noun Noun Noun Verb Noun 
@@ -8034,8 +8034,8 @@ Adjective Noun Verb Article Noun
 Adverb Adjective Noun Verb Adverb Noun 
 Adjective Article Noun Noun 
 Verb Noun Verb Verb Article Noun 
-Noun Number Noun Adjective Noun Verb 
-Noun Verb Noun Verb 
+Noun Number Noun Adjective Noun Adjective 
+Noun Adjective Noun Verb 
 Adjective Noun Noun Adverb 
 Noun Adjective Adjective Noun 
 Article Adjective Adverb Adjective Noun 
@@ -8088,7 +8088,7 @@ Article Noun Article Noun Adjective Adjective
 Noun Verb Article Adjective Noun 
 Article Noun Adverb Adjective Noun Adverb 
 Adjective Noun Verb Article Noun Verb 
-Adverb Verb Article Noun Adjective Noun 
+Adverb Noun Article Noun Adjective Noun 
 Article Noun Verb Adjective Noun Adverb 
 Article Adjective Noun Verb Article Noun 
 Noun Noun Article Noun Adjective Noun 
@@ -8583,7 +8583,7 @@ Noun Adjective Noun Noun
 Noun Adverb Verb Article Adjective Noun 
 Adverb Adjective Noun Verb Article Noun 
 Adjective Noun Verb Article Noun 
-Adverb Noun Noun Noun 
+Adverb Noun Noun Adverb 
 Adverb Verb Verb Article Noun 
 Noun Verb Adverb 
 Article Adverb Noun Adverb Adjective Adjective 
@@ -8879,7 +8879,7 @@ Adverb Noun Article Noun
 Adverb Noun Article Noun Noun 
 Adverb Noun Noun Verb Adverb Pronoun 
 Adverb Verb Article Noun 
-Adverb Noun Noun Noun Pronoun 
+Adverb Noun Adverb Noun Pronoun 
 Adverb Verb 
 Adverb Adverb 
 Article Noun Adverb Verb 
@@ -10037,7 +10037,7 @@ Noun Noun
 Article Noun Noun Noun 
 N\A Noun Noun Noun 
 Noun Noun Noun 
-Noun 
+Adjective 
 Article Noun Noun Noun 
 Article Noun Adjective Noun Noun Noun 
 Noun Noun Noun 
@@ -10127,7 +10127,7 @@ Noun Noun Adjective Noun
 Verb Noun Noun Noun Noun 
 Noun Noun Noun Noun 
 Adjective Noun Noun Noun 
-Article Noun Verb Noun 
+Article Adverb Verb Noun 
 Article Noun Verb Noun Noun 
 Noun Noun Adjective Noun 
 Adverb Noun Adverb Noun Noun 
@@ -10775,7 +10775,7 @@ Noun Verb Noun
 Adjective Noun Noun Noun 
 Verb Adjective Noun Noun Noun 
 Noun Adjective Adjective Noun 
-Noun Noun Noun Adverb Noun 
+Verb Noun Noun Adverb Noun 
 Verb Noun Noun Noun 
 Noun Article Noun Noun 
 Noun Adverb Noun Noun Noun 
@@ -11142,7 +11142,7 @@ Adjective Noun Noun Adverb Noun Noun
 Noun Adjective N\A Adjective Noun 
 Noun Adjective Noun Noun Noun 
 Noun Noun Adjective Noun 
-Article Noun Verb Noun Noun Noun 
+Article Noun Noun Noun Noun Noun 
 Adjective Noun Adjective Noun Noun Noun 
 Adjective Adjective Adjective Noun Noun 
 Adjective Article Noun Adjective Noun 
@@ -11628,7 +11628,7 @@ Adjective Verb Noun Noun
 Adjective Verb Noun Noun 
 Verb Noun Noun Noun Adverb Noun 
 Noun Noun Noun Noun Verb 
-Noun Noun Adverb Noun Noun 
+Noun Noun Adverb Adverb Noun 
 Verb Noun Verb Noun 
 Article Noun N\A Noun Noun 
 Article Verb Verb Noun Noun 
@@ -12709,7 +12709,7 @@ Noun Adverb Noun Noun
 Adverb Adjective Noun Noun Adjective Noun 
 Number Number Noun Adjective Noun 
 Noun Noun Noun 
-Noun Verb Noun Adverb Verb Noun 
+Noun Verb Noun Adverb Adverb Noun 
 Noun Verb Noun Noun Noun 
 Article Noun Noun Noun Noun Noun 
 Adjective Noun 
@@ -12869,7 +12869,7 @@ Verb Noun Noun Adjective Noun
 Article Noun Noun Verb Noun 
 Adjective Noun Adjective Noun 
 Article Noun Noun Verb 
-Noun Adverb Noun Noun Noun 
+Noun Adverb Adjective Noun Noun 
 Noun Noun Adjective Noun 
 Noun Noun Noun Verb Noun 
 N\A Noun Verb Noun 
@@ -13269,7 +13269,7 @@ Noun Noun Noun Noun
 Adjective Noun Noun Noun 
 Adjective Noun 
 Noun Article Noun Adverb Noun 
-Noun Noun Noun Adverb Verb Noun 
+Noun Noun Noun Adverb Adjective Noun 
 Noun Article Noun Adjective Noun 
 N\A Noun 
 Adverb Adjective Noun 
@@ -14607,7 +14607,7 @@ Noun Noun Noun Noun
 Noun Adjective Noun Noun 
 Noun Noun Noun Noun Noun 
 Noun Verb Noun Noun 
-Article Noun Noun Noun 
+Article Noun Verb Noun 
 Article Noun Verb Noun 
 Verb Verb Adjective Noun 
 Noun Noun Noun 
@@ -15282,7 +15282,7 @@ Noun Noun Noun
 Noun Noun Noun 
 Adverb Adjective Adjective Adverb Noun 
 Noun Adverb Article Adverb Noun Noun 
-N\A Noun Verb Noun Noun Noun 
+N\A Noun Noun Noun Noun Noun 
 N\A Noun Article Noun 
 N\A Noun Article Noun 
 Noun Verb Noun Noun 
@@ -15291,7 +15291,7 @@ Noun Noun Verb Noun Adjective Noun
 Adverb Verb Noun Noun 
 Adjective Noun Noun Noun 
 Article Noun Noun 
-N\A Noun Verb Noun Noun 
+N\A Noun Noun Noun Noun 
 N\A Noun Noun Noun Noun 
 Adjective Noun Adjective Noun Noun 
 Noun Adjective Noun Noun 
@@ -15652,7 +15652,7 @@ Adjective N\A Adjective
 Noun Noun Noun Noun Noun 
 Noun Article Noun 
 Noun Verb Noun Noun 
-Article Noun Noun Noun 
+Article Noun Noun Adverb 
 Adjective Noun Noun Verb Noun 
 Article Adjective Noun Article Noun 
 Noun Noun 
@@ -16382,7 +16382,7 @@ Noun Adjective Noun
 Verb N\A Verb Verb Noun Noun 
 Noun Adjective Noun 
 Adjective Noun Noun Noun Noun 
-Noun Adjective Adjective Verb Noun 
+Verb Adjective Adjective Verb Noun 
 Adjective Adjective Adjective Noun 
 Article Noun Noun Noun 
 Adjective Noun Verb Noun Adjective 
@@ -16808,7 +16808,7 @@ Noun Noun Adjective Adjective Noun
 Noun Verb Verb Noun Noun 
 Adjective Noun Noun Adjective Noun Noun 
 Adjective Noun Noun Adjective Noun 
-Noun Noun Noun 
+Noun Noun Adjective 
 Noun Noun 
 Noun Noun Verb Noun 
 Noun Noun Noun 
@@ -16943,7 +16943,7 @@ Article N\A Noun Noun Noun Noun
 Article Noun Noun Verb Noun 
 Adjective Adjective Noun Noun 
 Article Noun Noun Noun Noun 
-Noun Noun Noun 
+Noun Noun Adjective 
 Noun Verb 
 Noun Adjective Noun Noun 
 Adjective Noun Adjective Noun 
@@ -17280,7 +17280,7 @@ Noun Article Noun Noun Noun Noun
 Noun Noun Noun Noun Noun 
 Noun Noun 
 Noun Adjective Noun Adjective Noun Noun 
-Noun Noun Verb Noun Noun Noun 
+Noun Noun Verb Noun Noun Adverb 
 Noun Noun Verb Noun 
 Noun Noun Noun Noun N\A Noun 
 Noun Verb Noun 
@@ -17504,7 +17504,7 @@ Adverb Noun Adverb Adverb Verb
 Noun Verb 
 Verb Article Noun Adjective Noun 
 Verb N\A Noun N\A Noun 
-Noun Noun Noun Verb 
+Noun Noun Verb Verb 
 Noun Noun Noun Noun Verb 
 Noun Verb Adverb 
 Noun Noun Verb Noun Verb 
@@ -17793,7 +17793,7 @@ Noun Verb Noun N\A
 Noun Noun Verb Verb 
 Noun Noun Verb 
 Noun Noun Verb 
-Noun Article Noun Adverb 
+Noun Article Noun Adjective 
 Noun Noun Verb Adverb Noun 
 Adverb Noun Noun Noun Verb 
 Noun Adverb Noun Noun 
@@ -17912,7 +17912,7 @@ Noun N\A Noun Noun
 Noun Noun Noun Verb 
 Verb Verb Article Noun Adjective Noun 
 Adverb Adjective Noun Noun Adjective Verb 
-N\A Verb Noun Noun 
+N\A Noun Noun Noun 
 Noun Verb Verb Noun 
 Adjective N\A Noun Verb 
 Noun Noun Noun Verb Adjective 
@@ -17955,7 +17955,7 @@ Noun Adverb Verb Noun
 Noun Noun Verb 
 Noun Noun Noun Noun Noun 
 Adverb Noun Noun Adverb Verb Adverb 
-Verb Adverb 
+Verb Noun 
 Noun Noun Verb 
 Noun Adjective Noun Verb Noun 
 Noun Verb Noun 
@@ -18021,7 +18021,7 @@ Adjective Adverb Verb Verb Noun Verb
 Noun Noun Verb Noun Noun 
 Noun Noun Verb 
 Adverb Verb Noun 
-Noun Noun Noun Adverb Verb Verb 
+Noun Noun Noun Adverb Verb Noun 
 Noun Adverb Verb Noun 
 Adverb Noun Adverb Noun Verb Noun 
 Noun Noun Noun Verb 
@@ -18323,7 +18323,7 @@ Noun Noun Verb
 Noun Noun Adverb Verb 
 Noun Verb Noun Verb 
 Noun Noun Verb Verb 
-Verb N\A Adjective Noun 
+Adverb N\A Adjective Noun 
 Noun Verb Noun Noun Adverb 
 Noun Noun Verb Noun Adverb 
 Adjective Noun Adjective Verb 
@@ -19308,7 +19308,7 @@ Adverb Adjective Adverb Adjective Noun
 Article Noun Verb 
 Article Noun Noun 
 Noun Verb 
-Adverb Article Noun Verb 
+Adverb Article Noun Adjective 
 N\A Verb 
 Verb Adjective 
 Verb Noun Adjective 
@@ -19430,7 +19430,7 @@ Adjective Noun Noun Noun Noun
 Noun Adverb Noun Noun N\A Noun 
 Noun Noun Adverb Noun 
 Noun Adjective Noun 
-Noun Verb Adjective Verb Verb 
+Noun Verb Adjective Noun Verb 
 Noun Verb Adjective 
 Noun Noun Noun N\A 
 Noun Noun Noun Noun Verb 
@@ -19972,7 +19972,7 @@ Adjective Noun Noun Noun Noun
 Adjective Adjective Adjective Noun 
 Noun Adjective 
 Noun Noun Verb Adjective 
-Adverb Noun Noun Noun 
+Adverb Adverb Noun Noun 
 Noun Noun 
 Noun Noun 
 Adjective Noun Adjective 
@@ -20999,7 +20999,7 @@ Adjective Noun Adjective
 Adjective Noun Adverb 
 Adverb Adjective 
 Adjective Noun Adjective Noun 
-Noun Adverb 
+Adverb Adverb 
 Noun Adjective Noun Noun Noun 
 Noun Noun Verb 
 Noun Verb Noun 
@@ -21543,7 +21543,7 @@ Noun Verb
 Verb Noun Verb 
 Adverb Noun Noun Noun 
 Adverb Noun Noun 
-Noun Noun Noun Noun 
+Noun Noun Noun Adverb 
 Adjective Noun 
 Adjective Adverb 
 Noun Adverb Verb 
@@ -21710,7 +21710,7 @@ Noun Adverb Noun Noun
 Noun Adverb 
 Verb Noun Noun Adjective 
 Adjective Noun 
-Adjective Noun 
+Adjective Adverb 
 Verb Noun 
 Adjective Adjective Adjective Noun Adjective Noun 
 Adverb 
