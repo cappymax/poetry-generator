@@ -8,6 +8,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.ktim1435.language.Gramatics;
+import com.ktim1435.language.Word;
 
 public class SentenceAnalyzer {
 	private Document doc;
@@ -25,6 +26,8 @@ public class SentenceAnalyzer {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	public void generateSentenceFile() {
 		System.out.println("Writing sentence types to file.");
@@ -52,25 +55,36 @@ public class SentenceAnalyzer {
 	}
 
 	private void parseListOfSentences(PrintWriter writer, NodeList list) {
-		WordNet wn = new WordNet();
+		Word word = new Word();
+		Word calculated = new Word();
+		String type,root,text,types,roots,texts;
 		for (int i = 0 ; i < list.getLength(); i++) {
 			if (i % 10 == 0) System.out.println(i + " th step");
 			String content = list.item(i).getTextContent();
 			String[] contents = content.toLowerCase().split("[ ,.!?:]");
 			if (contents.length <= 6) { //check for max length structures
-				String types = "";
+				types = "";
+				roots = "";
+				texts = "";
 				for (int j = 0; j < contents.length; j++) {
-					String type = "";
 					if (!contents[j].equals("")) {//in cases of ", "
 						try {
-								type = wn.getType(contents[j]);
+							calculated = wn.getRoot(contents[j]);
+							type = calculated.getType();
+							root = calculated.getText();
+							text = contents[j];
 						} catch (Exception e) {
+							text = contents[j];
+							root = "N\\A";
 							type = "N\\A";
 						}
 						types += type + " ";
+						roots += root + " ";
+						texts += text + " ";
+						
 					}
 				}
-				writer.write(types + Gramatics.END_OF_LINE);
+				writer.write(texts + "| " + roots + "| " + types + Gramatics.END_OF_LINE);
 			}
 		}
 	}

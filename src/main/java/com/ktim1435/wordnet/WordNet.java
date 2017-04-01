@@ -222,7 +222,34 @@ public class WordNet {
 			//addWordToWordNet(result.getType(), result.getText());
 			return result.getType();
 		}
+	}
+	
+	/**
+	 * Returns the basic word that is already in the WordNet
+	 * @param word
+	 * @return
+	 * @throws Exception
+	 */
+	public Word getRoot(String word) throws Exception {
+		Word result = new Word();
+		Word resultSpecial = new Word();
+		Word resultNonSpecial = new Word();
 
+		word = word.toLowerCase();
+		resultSpecial = checkAllSubwords(word);
+
+		word = replaceSpecialChars(word);
+		resultNonSpecial = checkAllSubwords(word);
+
+		result = getBetterResult(resultSpecial, resultNonSpecial);
+
+		if (noResultFound(result))
+			throw new Exception("Not Mapped Word");
+		else {
+			//IF WANTED
+			//addWordToWordNet(result.getType(), result.getText());
+			return result;
+		}
 	}
 
 	private Word getBetterResult(Word resultSpecial, Word resultNonSpecial) {

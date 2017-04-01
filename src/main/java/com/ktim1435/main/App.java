@@ -20,12 +20,12 @@ public class App
 //    	}
 
     	WordNet wn = new WordNet();
-    	Sentence s = new Sentence("Az ipafai papnak fa pipaja van.",wn);
+//    	Sentence s = new Sentence("Az ipafai papnak fa pipaja van.",wn);
+//    	
+//    	System.out.println(s.getTypesString());
     	
-    	System.out.println(s.getTypesString());
-    	
-//    	SentenceAnalyzer sa = new SentenceAnalyzer();
-//    	sa.generateSentenceFile();
+    	SentenceAnalyzer sa = new SentenceAnalyzer(wn);
+    	sa.generateSentenceFile();
 
     	
     	//Poem p = new Poem("Az ipafai      papnak\nfapipaja van,\nezert az ipafai fapipa,\npapi fapipa.");
