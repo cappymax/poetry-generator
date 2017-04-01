@@ -76,17 +76,21 @@ public class WordNet {
 		String type = getTypeOfWordNode(list.item(i));
 		String content = getSingleContentOfWordNode(list.item(i));
 		
-		if (isValidContent(content)) 
-			if (isNoun(type)) 
-				addWordToNouns(content);
-			else if (isVerb(type)) 
-				addWordToVerbs(content);
-			else if (isAdjective(type))
-				addWordToAdjectives(content);
-			else if (isAdverb(type))
-				addWordToAdverbs(content);
-			else 
-				throw new Exception("Non Existent Type");
+		if (isValidContent(content))
+			addWordToWordNet(type, content);
+	}
+
+	private void addWordToWordNet(String type, String content) throws Exception {
+		if (isNoun(type)) 
+			addWordToNouns(content);
+		else if (isVerb(type)) 
+			addWordToVerbs(content);
+		else if (isAdjective(type))
+			addWordToAdjectives(content);
+		else if (isAdverb(type))
+			addWordToAdverbs(content);
+		else 
+			throw new Exception("Non Existent Type");
 	}
 
 	private boolean isAdverb(String type) {
@@ -203,36 +207,27 @@ public class WordNet {
 		Word resultSpecial = new Word();
 		Word resultNonSpecial = new Word();
 
-		// try {
-		// String type = getOneDeepType(word);
-		// return type;
-		// } catch (Exception e) {
 		word = word.toLowerCase();
 		resultSpecial = checkAllSubwords(word);
 
 		word = replaceSpecialChars(word);
 		resultNonSpecial = checkAllSubwords(word);
 
-		result = resultSpecial.getText().length() > resultNonSpecial.getText().length() ? resultSpecial
-				: resultNonSpecial;
+		result = getBetterResult(resultSpecial, resultNonSpecial);
 
 		if (noResultFound(result))
 			throw new Exception("Not Mapped Word");
 		else {
-			// if (result.getType().equals("Noun")) {
-			// nouns.add(result.getText());
-			// } else if (result.getType().equals("Verb")) {
-			// verbs.add(result.getText());
-			// } else if (result.getType().equals("Adjective")) {
-			// adjectives.add(result.getText());
-			// } else if (result.getType().equals("Adverb")) {
-			// adverbs.add(result.getText());
-			// }
-			// words.add(result);
+			//IF WANTED
+			//addWordToWordNet(result.getType(), result.getText());
 			return result.getType();
 		}
 
-		// }
+	}
+
+	private Word getBetterResult(Word resultSpecial, Word resultNonSpecial) {
+		return resultSpecial.getText().length() > resultNonSpecial.getText().length() ? resultSpecial
+				: resultNonSpecial;
 	}
 
 	/**
@@ -250,7 +245,7 @@ public class WordNet {
 				|| word.equals("ők") || word.equals("engem") || word.equals("téged") || word.equals("őt")
 				|| word.equals("minket") || word.equals("titeket") || word.equals("őket"))
 			return "Pronoun";
-		if (isAdjective(word) || word.equals("az") || word.equals("egy"))
+		if (word.equals("a") || word.equals("az") || word.equals("egy"))
 			return "Article";
 		if (nouns.contains(word))
 			return "Noun";

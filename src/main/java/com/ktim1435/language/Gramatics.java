@@ -13,7 +13,7 @@ public class Gramatics {
 		lines = removeEmptyLines(lines);
 		lines = removeUnwantedSpaces(lines);
 		lines = removeEmptyLines(lines);
-		lines = uppercaseFirstLetter(lines);
+		lines = uppercaseFirstLetters(lines);
 		lines = setPunctuation(lines);
 		return lines;
 	}
@@ -31,7 +31,7 @@ public class Gramatics {
 	private static List<Line> removeUnwantedSpaces(List<Line> lines) {
 		List<Line> newLines = new ArrayList<Line>();
 		for (Line l : lines) {
-			l.setText(l.getText().replaceAll("\\s+", " "));
+			l.setText(removeExcessSpaces(l.getText()));
 			if (l.getText().charAt(0) == ' ')
 				l.setText(l.getText().substring(1, l.getText().length()));
 			newLines.add(l);
@@ -39,13 +39,22 @@ public class Gramatics {
 		return newLines;
 	}
 
-	private static List<Line> uppercaseFirstLetter(List<Line> lines) {
+	public static String removeExcessSpaces(String text) {
+		return text.replaceAll("\\s+", " ");
+	}
+	
+
+	private static List<Line> uppercaseFirstLetters(List<Line> lines) {
 		List<Line> newLines = new ArrayList<Line>();
 		for (Line l : lines) {
-			l.setText(Character.toUpperCase(l.getText().charAt(0)) + l.getText().substring(1, l.getText().length()));
+			l.setText(uppercaseFirstLetter(l.getText()));
 			newLines.add(l);
 		}
 		return newLines;
+	}
+
+	public static String uppercaseFirstLetter(String text) {
+		return Character.toUpperCase(text.charAt(0)) + text.substring(1, text.length());
 	}
 
 	private static List<Line> setPunctuation(List<Line> lines) {
