@@ -7,11 +7,15 @@ import com.ktim1435.poem.*;
 import com.ktim1435.wordnet.WordNet;
 
 public class GeneticAlgorithm {
-	public static int ROWCOUNT = 4;
-	public static int SPECIMEN_COUNT = 10;
-	public static WordNet wn = new WordNet();
+	public int ROWCOUNT = 4;
+	public int SPECIMEN_COUNT = 10;
+	public WordNet wn;
 	
-	public static Line getOneLine() {
+	public GeneticAlgorithm(WordNet wn) {
+		this.wn = wn;
+	}
+	
+	public Line getOneLine() {
 		
 		Random r = new Random();
 		String lineText = "";
@@ -29,7 +33,7 @@ public class GeneticAlgorithm {
 		return line;
 	}
 	
-	public static Verse getOneVerse() {
+	public Verse getOneVerse() {
 		Verse verse = new Verse("");
 		for (int i = 0; i < ROWCOUNT; i++) {
 			Line line = getOneLine();
@@ -38,7 +42,7 @@ public class GeneticAlgorithm {
 		return verse;
 	}
 	
-	public static ArrayList<Verse> getOneGeneration() {
+	public ArrayList<Verse> getOneGeneration() {
 		ArrayList<Verse> verses = new ArrayList<Verse>();
 		for (int i = 0; i < SPECIMEN_COUNT; i++) {
 			verses.add(getOneVerse());

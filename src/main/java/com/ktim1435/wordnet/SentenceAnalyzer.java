@@ -11,9 +11,10 @@ import com.ktim1435.language.Gramatics;
 
 public class SentenceAnalyzer {
 	private Document doc;
-	private WordNet wn = new WordNet();
+	private WordNet wn;
 	
-	public SentenceAnalyzer() {
+	public SentenceAnalyzer(WordNet wn) {
+		this.wn = wn;
 		try {
 			doc = wn.openDoc();
 		} catch (ParserConfigurationException e) {
