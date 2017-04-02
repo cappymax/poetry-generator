@@ -28,13 +28,13 @@ public class App
 //    	System.out.println(s.getRootsString());
     	
     	SentenceAnalyzer sa = new SentenceAnalyzer(wn);
-    	try {
-			sa.readSentenceFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//    	try {
+//			sa.readSentenceFile();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 
-//    	sa.generateSentenceFile();
+    	sa.generateSentenceFile();
 
     	
     	//Poem p = new Poem("Az ipafai      papnak\nfapipaja van,\nezert az ipafai fapipa,\npapi fapipa.");
