@@ -59,7 +59,7 @@ public class Sentence {
 		for (Word word : words) 
 			result += word.getText() + " ";
 		
-		result = Gramatics.removeExcessSpaces(result);
+		//result = Gramatics.removeExcessSpaces(result);
 		//result = Gramatics.uppercaseFirstLetter(result);
 		
 		return result;
@@ -75,14 +75,14 @@ public class Sentence {
 		for (Word word : words) 
 			result += word.getType() + " ";
 		
-		result = Gramatics.removeExcessSpaces(result);
+		//result = Gramatics.removeExcessSpaces(result);
 		//result = Gramatics.uppercaseFirstLetter(result);
 		
 		return result;
 	}
 	
 	public String getRootsString() {
-		return toTypeString(words);
+		return toRootsString(words);
 	}
 	
 	private String toRootsString(ArrayList<Word> words) {
@@ -91,7 +91,7 @@ public class Sentence {
 		for (Word word : words) 
 			result += word.getRoot() + " ";
 		
-		result = Gramatics.removeExcessSpaces(result);
+		//result = Gramatics.removeExcessSpaces(result);
 		//result = Gramatics.uppercaseFirstLetter(result);
 		
 		return result;

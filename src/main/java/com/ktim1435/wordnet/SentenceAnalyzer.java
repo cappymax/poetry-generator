@@ -1,18 +1,25 @@
 package com.ktim1435.wordnet;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.ktim1435.language.Gramatics;
+import com.ktim1435.language.Sentence;
 import com.ktim1435.language.Word;
 
 public class SentenceAnalyzer {
 	private Document doc;
 	private WordNet wn;
+	public ArrayList<Sentence> sentences = new ArrayList<Sentence>();
 	
 	public SentenceAnalyzer(WordNet wn) {
 		this.wn = wn;
@@ -27,6 +34,39 @@ public class SentenceAnalyzer {
 		}
 	}
 	
+	
+	public void readSentenceFile() throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader("sentences.txt"));
+		try {
+		    StringBuilder sb = new StringBuilder();
+		    String line = br.readLine();
+		    String thisLine;
+		    String[] splittedLine, splittedText, splittedRoots, splittedTypes;
+		    ArrayList<Word> words = new ArrayList<Word>();
+		    
+		    while (line != null) {
+		        sb.append(line);
+		        thisLine = sb.toString();
+		        splittedLine = thisLine.split("[|]");
+		        
+		        splittedText = splittedLine[0].split(" ");
+		        splittedRoots = splittedLine[1].split(" ");
+		        splittedTypes = splittedLine[2].split(" ");
+
+		        for (int i = 0; i < splittedText.length; i++) 
+		        	words.add(new Word(splittedText[i],splittedRoots[i],splittedTypes[i]));
+		        
+		        sentences.add(new Sentence(words, wn));
+		        line = br.readLine();
+		    }
+		    //everything = sb.toString();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+		    br.close();
+		}
+	}
 	
 	/**
 	 * Generates the sentences.txt file containing a well written format of sentence | root words | types
@@ -86,7 +126,7 @@ public class SentenceAnalyzer {
 						
 					}
 				}
-				writer.write(texts + "| " + roots + "| " + types + Gramatics.END_OF_LINE);
+				writer.write(texts + "|" + roots + "|" + types + Gramatics.END_OF_LINE);
 			}
 		}
 	}

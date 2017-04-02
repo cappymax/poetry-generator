@@ -1,5 +1,6 @@
 package com.ktim1435.main;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.ktim1435.genetic.GeneticAlgorithm;
@@ -22,11 +23,17 @@ public class App
 //        	System.out.println(v + "\n");
 //    	}
 
-    	Sentence s = new Sentence("Az ipafai papnak fa pipaja van.",wn);
-//    	
-    	System.out.println(s.getRootsString());
+//    	Sentence s = new Sentence("Az ipafai papnak fa pipaja van.",wn);
+////    	
+//    	System.out.println(s.getRootsString());
     	
-//    	SentenceAnalyzer sa = new SentenceAnalyzer(wn);
+    	SentenceAnalyzer sa = new SentenceAnalyzer(wn);
+    	try {
+			sa.readSentenceFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 //    	sa.generateSentenceFile();
 
     	
