@@ -6,12 +6,12 @@ import java.util.Collection;
 import com.ktim1435.wordnet.WordNet;
 
 public class Sentence {
-	private ArrayList<Word> text;
+	private ArrayList<Word> words;
 	private WordNet wn;
 	
 	public Sentence(String text, WordNet wn) {
 		this.wn = wn;
-		this.text = createWordList(text);
+		this.words = createWordList(text);
 
 	}
 	
@@ -28,31 +28,29 @@ public class Sentence {
 				e.printStackTrace();
 			}
 		
-		
-		
 		return words;
 	}
 	
 	public Sentence(Collection<Word> words, WordNet wn) {
 		this.wn = wn;
-		this.text = new ArrayList<Word>(words);
+		this.words = new ArrayList<Word>(words);
 	}
 	
-	public ArrayList<Word> getText() {
-		return text;
+	public ArrayList<Word> getWords() {
+		return words;
 	}
 
-	public void setText(ArrayList<Word> text) {
-		this.text = text;
+	public void setWords(ArrayList<Word> words) {
+		this.words = words;
 	}
 	
-	public void setText(String text) {
-		this.text = createWordList(text);
+	public void setWords(String text) {
+		this.words = createWordList(text);
 	}
 	
 	
 	public String toString() {
-		return toReadbleString(text);
+		return toReadbleString(words);
 	}
 	
 	private String toReadbleString(ArrayList<Word> words) {
@@ -68,7 +66,7 @@ public class Sentence {
 	}
 	
 	public String getTypesString() {
-		return toTypeString(text);
+		return toTypeString(words);
 	}
 	
 	private String toTypeString(ArrayList<Word> words) {
@@ -76,6 +74,22 @@ public class Sentence {
 		
 		for (Word word : words) 
 			result += word.getType() + " ";
+		
+		result = Gramatics.removeExcessSpaces(result);
+		//result = Gramatics.uppercaseFirstLetter(result);
+		
+		return result;
+	}
+	
+	public String getRootsString() {
+		return toTypeString(words);
+	}
+	
+	private String toRootsString(ArrayList<Word> words) {
+		String result = "";
+		
+		for (Word word : words) 
+			result += word.getRoot() + " ";
 		
 		result = Gramatics.removeExcessSpaces(result);
 		//result = Gramatics.uppercaseFirstLetter(result);
