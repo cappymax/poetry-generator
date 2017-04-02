@@ -14,12 +14,14 @@ public class App
 {
     public static void main( String[] args )
     {
-//    	ArrayList<Verse> verses = GeneticAlgorithm.getOneGeneration();
+
+    	WordNet wn = new WordNet();
+//    	GeneticAlgorithm ga = new GeneticAlgorithm(wn);
+//    	ArrayList<Verse> verses = ga.getOneGeneration();
 //    	for (Verse v:verses) {
 //        	System.out.println(v + "\n");
 //    	}
 
-    	WordNet wn = new WordNet();
 //    	Sentence s = new Sentence("Az ipafai papnak fa pipaja van.",wn);
 //    	
 //    	System.out.println(s.getTypesString());

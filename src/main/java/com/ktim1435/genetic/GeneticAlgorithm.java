@@ -22,7 +22,7 @@ public class GeneticAlgorithm {
 		try {
 			int wordCount = r.nextInt(4) + 2;
 			while (wordCount > 0) {
-				String word = wn.getWord("random");
+				String word = wn.getRandomWord().getText();
 				wordCount -= word.split(" ").length;
 				lineText += word + " ";
 			}

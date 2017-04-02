@@ -28,7 +28,9 @@ public class SentenceAnalyzer {
 	}
 	
 	
-	
+	/**
+	 * Generates the sentences.txt file containing a well written format of sentence | root words | types
+	 */
 	public void generateSentenceFile() {
 		System.out.println("Writing sentence types to file.");
 		try{

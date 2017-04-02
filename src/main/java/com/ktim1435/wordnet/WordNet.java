@@ -2,25 +2,21 @@ package com.ktim1435.wordnet;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
-
-import javax.print.Doc;
 import javax.xml.parsers.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import com.ktim1435.language.Gramatics;
 import com.ktim1435.language.Word;
 
 public class WordNet {
 	private Document doc;
 	private ArrayList<Word> words = new ArrayList<Word>();
-	private ArrayList<String> nouns = new ArrayList<String>();
-	private ArrayList<String> verbs = new ArrayList<String>();
-	private ArrayList<String> adjectives = new ArrayList<String>();
-	private ArrayList<String> adverbs = new ArrayList<String>();
+	private Map<String, ArrayList<Word>> separatedWords = new HashMap<String, ArrayList<Word>>();
+	private Map<String, String> typesMap = new HashMap<String, String>();
 
 	/**
 	 * Create an instance of the WordNet class, in order to access hungarian
@@ -28,11 +24,54 @@ public class WordNet {
 	 */
 	public WordNet() {
 		try {
+			prepareTypesMap();
 			doc = openDoc();
 			parseDoc();
+			addSpecificWords();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void prepareTypesMap() {
+		typesMap.put("n", "Noun");
+		typesMap.put("noun", "Noun");
+		typesMap.put("Noun", "Noun");
+		typesMap.put("v", "Verb");
+		typesMap.put("verb", "Verb");
+		typesMap.put("verb", "Verb");
+		typesMap.put("a", "Adjective");
+		typesMap.put("adjective", "Adjective");
+		typesMap.put("Adjective", "Adjective");
+		typesMap.put("b", "Adverb");
+		typesMap.put("adverb", "Adverb");
+		typesMap.put("Adverb", "Adverb");
+		typesMap.put("pronoun", "Pronoun");
+		typesMap.put("Pronoun", "Pronoun");
+		typesMap.put("article", "Article");
+		typesMap.put("Article", "Article");
+		typesMap.put("number", "Number");
+		typesMap.put("Number", "Number");
+	}
+
+	private void addSpecificWords() {
+		words.add(new Word("én","én","Pronoun"));
+		words.add(new Word("te","te","Pronoun"));
+		words.add(new Word("ő","ő","Pronoun"));
+		words.add(new Word("mi","mi","Pronoun"));
+		words.add(new Word("ti","ti","Pronoun"));
+		words.add(new Word("ők","ők","Pronoun"));
+		words.add(new Word("engem","engem","Pronoun"));
+		words.add(new Word("téged","téged","Pronoun"));
+		words.add(new Word("őt","őt","Pronoun"));
+		words.add(new Word("minket","minket","Pronoun"));
+		words.add(new Word("titeket","titeket","Pronoun"));
+		words.add(new Word("őket","őket","Pronoun"));
+		words.add(new Word("ez","ez","Pronoun"));
+		words.add(new Word("egy","egy","Article"));
+		words.add(new Word("a","a","Article"));
+		words.add(new Word("az","az","Article"));
+		words.add(new Word("mind","mind","Number"));
 	}
 
 	/**
@@ -80,65 +119,8 @@ public class WordNet {
 			addWordToWordNet(type, content);
 	}
 
-	private void addWordToWordNet(String type, String content) throws Exception {
-		if (isNoun(type)) 
-			addWordToNouns(content);
-		else if (isVerb(type)) 
-			addWordToVerbs(content);
-		else if (isAdjective(type))
-			addWordToAdjectives(content);
-		else if (isAdverb(type))
-			addWordToAdverbs(content);
-		else 
-			throw new Exception("Non Existent Type");
-	}
-
-	private boolean isAdverb(String type) {
-		return type.equals("b") || type.equals("adverb");
-	}
-
-	private boolean isAdjective(String type) {
-		return type.equals("a") || type.equals("adjective");
-	}
-
-	private boolean isVerb(String type) {
-		return type.equals("v") || type.equals("verb");
-	}
-
-	private boolean isNoun(String type) {
-		return type.equals("n") || type.equals("noun");
-	}
-
-	private void addWordToAdverbs(String content) {
-		Word word = new Word();
-		word.setText(content);
-		adverbs.add(content);
-		word.setType("adverb");
-		words.add(word);
-	}
-
-	private void addWordToAdjectives(String content) {
-		Word word = new Word();
-		word.setText(content);
-		adjectives.add(content);
-		word.setType("adjective");
-		words.add(word);
-	}
-
-	private void addWordToVerbs(String content) {
-		Word word = new Word();
-		word.setText(content);
-		verbs.add(content);
-		word.setType("verb");
-		words.add(word);
-	}
-
-	private void addWordToNouns(String content) {
-		Word word = new Word();
-		word.setText(content);
-		nouns.add(content);
-		word.setType("noun");
-		words.add(word);
+	private void addWordToWordNet(String type, String content)   {
+			words.add(new Word(content, content, typesMap.get(type)));
 	}
 
 	private boolean isValidContent(String content) {
@@ -152,46 +134,6 @@ public class WordNet {
 	private String getTypeOfWordNode(Node i) {
 		return i.getParentNode().getParentNode().getChildNodes().item(0).getTextContent()
 				.split("-")[2];
-	}
-
-	/**
-	 * Generate a random word with a set type. Types include:<br>
-	 * noun<br>
-	 * verb<br>
-	 * adverb<br>
-	 * adjective<br>
-	 * random - any type of word<br>
-	 * 
-	 * @param type
-	 *            - type of the expected word.
-	 * @return A new word of set type.
-	 * @throws Exception
-	 *             - non existent type
-	 */
-	public String getWord(String type) throws Exception {
-		Random r = new Random();
-
-		if (isNoun(type))
-			return nouns.get(r.nextInt(nouns.size()));
-		if (isVerb(type))
-			return verbs.get(r.nextInt(verbs.size()));
-		if (isAdjective(type))
-			return adjectives.get(r.nextInt(adjectives.size()));
-		if (isAdverb(type))
-			return adverbs.get(r.nextInt(adverbs.size()));
-		if (type.equals("random")) {
-			int rn = r.nextInt(4);
-			if (rn == 0)
-				return getWord("noun");
-			if (rn == 1)
-				return getWord("verb");
-			if (rn == 2)
-				return getWord("adjective");
-			if (rn == 3)
-				return getWord("adverb");
-		}
-
-		throw new Exception("Non Existent Type");
 	}
 
 	/**
@@ -225,7 +167,7 @@ public class WordNet {
 	}
 	
 	/**
-	 * Returns the basic word that is already in the WordNet
+	 * Returns the root word that is already in the WordNet
 	 * @param word
 	 * @return
 	 * @throws Exception
@@ -266,24 +208,68 @@ public class WordNet {
 	 */
 	private String getOneDeepType(String word) throws Exception {
 		word = word.toLowerCase();
+		Word w = getWord(word);
+		
 		if (word.matches("[0-9]*"))
 			return "Number";
-		if (word.equals("én") || word.equals("te") || word.equals("ő") || word.equals("mi") || word.equals("ti")
-				|| word.equals("ők") || word.equals("engem") || word.equals("téged") || word.equals("őt")
-				|| word.equals("minket") || word.equals("titeket") || word.equals("őket"))
-			return "Pronoun";
-		if (word.equals("a") || word.equals("az") || word.equals("egy"))
-			return "Article";
-		if (nouns.contains(word))
-			return "Noun";
-		if (verbs.contains(word))
-			return "Verb";
-		if (adjectives.contains(word))
-			return "Adjective";
-		if (adverbs.contains(word))
-			return "Adverb";
+		
+		if (w != null)
+			return w.getType();
 
 		throw new Exception("Not Mapped Word");
+	}
+	
+	/**
+	 * Generate a random word with a set type. Types include:<br>
+	 * noun<br>
+	 * verb<br>
+	 * adverb<br>
+	 * adjective<br>
+	 * random - any type of word<br>
+	 * 
+	 * @param type
+	 *            - type of the expected word.
+	 * @return A new word of set type.
+	 * @throws Exception
+	 *             - non existent type
+	 */
+	public Word getWordByType(String type) {
+		Random r = new Random();	
+		ArrayList<Word> localWords;
+		int i = 0;
+		if (separatedWords.containsKey(type)) 
+			localWords = separatedWords.get(type);
+		else {
+			localWords = new ArrayList<Word>();
+			for (Word word : words) 
+				if (word.getType().equals(type)) 
+					localWords.add(word);
+			separatedWords.put(type, localWords);
+		}
+		i = r.nextInt(localWords.size());
+		
+		return localWords.get(i);
+	}
+	
+	/**
+	 * Returns a random word.
+	 * @return
+	 */
+	public Word getRandomWord() {
+		Random r = new Random();
+		return words.get(r.nextInt(words.size()));
+	}
+	
+	/**
+	 * Get the full word object if it already exists in wordnet, only by string.
+	 * @param word
+	 * @return
+	 */
+	private Word getWord(String word) {
+		for (Word w : words) 
+			if (w.getText().equals(word))
+				return w;
+		return null;
 	}
 
 	private boolean noResultFound(Word result) {
