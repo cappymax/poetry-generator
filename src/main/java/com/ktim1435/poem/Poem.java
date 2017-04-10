@@ -32,5 +32,7 @@ public class Poem implements PoeticElement {
 	public String toString() {
 		return this.getVerses();
 	}
+	
+	
 
 }

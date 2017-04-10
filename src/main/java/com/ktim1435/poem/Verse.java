@@ -5,9 +5,11 @@ import java.util.Collection;
 import java.util.List;
 
 import com.ktim1435.language.Gramatics;
+import com.ktim1435.poetry.Rhyme;
 
 public class Verse implements PoeticElement {
 	private List<Line> lines = new ArrayList<Line>();
+	private Rhyme rhyme = new Rhyme();
 
 	public Verse(String newVerse) {
 		int index = 0;
@@ -61,4 +63,11 @@ public class Verse implements PoeticElement {
 	public String toString() {
 		return this.getLines();
 	}
+	
+	public Rhyme getRhyme() {
+		rhyme.calculateRhyme(lines);
+		return rhyme;
+	}
+	
+	
 }
