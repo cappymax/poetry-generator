@@ -124,7 +124,7 @@ public class WordNet {
 	}
 
 	private boolean isValidContent(String content) {
-		return content.indexOf('(') == -1 && content.indexOf('_') == -1;
+		return content.indexOf('(') == -1 && content.indexOf('_') == -1 && content.indexOf(" ") == -1;
 	}
 
 	private String getSingleContentOfWordNode(Node i) {

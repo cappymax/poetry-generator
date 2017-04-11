@@ -17,7 +17,7 @@ public class App
     public static void main( String[] args )
     {
     	
-//    	WordNet wn = new WordNet();
+    	WordNet wn = new WordNet();
 //    	GeneticAlgorithm ga = new GeneticAlgorithm(wn);
 //    	ArrayList<Verse> verses = ga.getOneGeneration();
 //    	for (Verse v:verses) {
@@ -28,18 +28,21 @@ public class App
 ////    	
 //    	System.out.println(s.getRootsString());
     	
-//    	SentenceAnalyzer sa = new SentenceAnalyzer(wn);
-//    	try {
-//			sa.readSentenceFile();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+    	SentenceAnalyzer sa = new SentenceAnalyzer(wn);
+    	try {
+			sa.readSentenceFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
+    	String text = sa.getWord().getText();
+    	System.out.println(text);
+    	
 //    	sa.generateSentenceFile();
 
     	
-    	Verse p = new Verse("Az ipafai papnak\nfapipaja lesz,\nezert az ipafai fapipa,\npapi stressz.");
-    	System.out.println(p.getRhyme().calculateRhymeValue());
+//    	Verse p = new Verse("Az ipafai papnak\nfapipaja lesz,\nezert az ipafai fapipa,\npapi stressz.");
+//    	System.out.println(p.getRhyme().calculateRhymeValue());
 //        System.out.println(p);
     }
 }
