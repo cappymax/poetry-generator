@@ -1,6 +1,6 @@
 package com.ktim1435.language;
 
-public class Word {
+public class Word implements Comparable{
 	private String text = "";
 	private String type = "";
 	private String root = "";
@@ -47,6 +47,11 @@ public class Word {
 	@Override
 	public String toString() {
 		return text;
+	}
+
+	public int compareTo(Object o) {
+		
+		return o.toString().compareTo(this.toString());
 	}
 	
 }

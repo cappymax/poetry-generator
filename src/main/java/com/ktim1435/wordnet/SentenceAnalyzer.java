@@ -26,11 +26,13 @@ import com.ktim1435.language.Word;
 public class SentenceAnalyzer {
 	private Document doc;
 	private WordNet wn;
+	private Random r = new Random(System.currentTimeMillis());
 	// public ArrayList<Sentence> sentences = new ArrayList<Sentence>();
 	public Map<String, Integer> wordStats = new TreeMap<String, Integer>();
 	public Map<String, Integer> rootStats = new TreeMap<String, Integer>();
 	public Map<String, Integer> typeStats = new TreeMap<String, Integer>();
-
+	public Map<String,Map<Word,Integer>> wordListByType= new HashMap<String, Map<Word,Integer>>();
+	
 	public SortedSet<Entry<String, Integer>> sortedWordStats;
 	public SortedSet<Entry<String, Integer>> sortedRootStats;
 	public SortedSet<Entry<String, Integer>> sortedTypeStats;
@@ -97,10 +99,11 @@ public class SentenceAnalyzer {
 						rootStats.put(w.getRoot(), 1);
 
 					if (wordStats.containsKey(w.toString())) {
-						words.add(w);
 						wordStats.put(w.toString(), wordStats.get(w.toString()) + 1);
-					} else
+					} else {
+						words.add(w);
 						wordStats.put(w.toString(), 1);
+					}
 				}
 
 				// sentences.add(new Sentence(words, wn));
@@ -123,10 +126,18 @@ public class SentenceAnalyzer {
 			// }
 
 			// w.close();
-			setRelativeDistributionForTypes();
 			sortedWordStats = entriesSortedByValues(wordStats);
 			sortedRootStats = entriesSortedByValues(rootStats);
 			sortedTypeStats = entriesSortedByValues(typeStats);
+			
+
+//			System.out.println("Cumsum words");
+//			wordStats = cumSum(wordStats);
+//			System.out.println("CumSum roots");
+//			rootStats = cumSum(rootStats);
+			System.out.println("CumSum types");
+			typeStats = cumSum(typeStats);
+			
 
 
 			// w.write(rootStats.toString().replace(' ', '\n'));
@@ -135,9 +146,20 @@ public class SentenceAnalyzer {
 		}
 	}
 
-	private void setRelativeDistributionForTypes() {
-		for (String s : typeStats.keySet())
-			typeStats.put(s, 1000*typeStats.get(s)/words.size());
+	
+
+	private <T> Map<T,Integer> cumSum(Map<T, Integer> stats) {
+		Map<T, Integer> newMap = new TreeMap<T, Integer>();
+		Object[] array = stats.keySet().toArray();
+		newMap.put((T) array[0], stats.get(array[0]));
+		int current = stats.get(array[0]);
+		
+		for (int i = 1; i < stats.keySet().toArray().length; i++) {
+			current += stats.get(array[i]);
+			newMap.put((T) array[i], current);
+		}
+			
+		return newMap;
 		
 	}
 
@@ -218,20 +240,19 @@ public class SentenceAnalyzer {
 	}
 
 	public Word getWord() {
-		Random r = new Random();
 		double a = r.nextDouble();
+		//System.out.println(a);
 		if (a < 0.1) {
 			return wn.getRandomWord();
 		}
-		int b = r.nextInt(1000);
+		//System.out.println(typeStats);
+		int b = r.nextInt(typeStats.get("Verb"));
+		//System.out.println(b);
 		for (int i = 0; i < typeStats.size(); i++) {
-			int s = 0;
-			for (int j = 0; j < i; j++) {
-				s += getIthTypeStat(j);
-			}
-			if (b < s) {
+			if (b < getIthTypeStat(i)) {
 				return getOneWordWithType(typeStats.keySet().toArray()[i].toString()); 
 			}
+		
 		}
 		return null;
 		// return randomByStats(r);
@@ -241,20 +262,26 @@ public class SentenceAnalyzer {
 	}
 	
 	private Word getOneWordWithType(String type) {
-		Map<Word,Integer> result = new HashMap<Word, Integer>();
-		for (Word w : words) {
-			if (w.getType().equals(type))
-				result.put(w, wordStats.get(w.getText()));
-		}
-		Random r = new Random();
-		int a = r.nextInt(result.size());
-		Object[] resultSet = result.keySet().toArray();
-		for (int i = 0; i < result.size(); i++) {
-			int s = 0;
-			for (int j = 0; j < i; j++) {
-				s+= getIthResultStat(j, result, resultSet);
+		if (!wordListByType.containsKey(type)) {
+			Map<Word,Integer> result = new TreeMap<Word, Integer>();
+			for (Word w : words) {
+				if (w.getType().equals(type))
+					result.put(w, wordStats.get(w.getText()));
 			}
-			if (a < s) {
+			System.out.println("CumSum result " + type);
+			result = cumSum(result);
+			wordListByType.put(type,result);
+			//System.out.println(result);
+		}
+		Map<Word,Integer> result = wordListByType.get(type);
+		Object[] resultSet = result.keySet().toArray();
+		
+		int a = r.nextInt(result.get(resultSet[resultSet.length-1]));
+		//System.out.println(a);
+
+
+		for (int i = 0; i < result.size(); i++) {
+			if (a <= getIthResultStat(i, result, resultSet)) {
 				return (Word) resultSet[i];
 			}
 		}
