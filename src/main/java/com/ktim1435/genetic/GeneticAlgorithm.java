@@ -13,6 +13,7 @@ public class GeneticAlgorithm {
 	public int SPECIMEN_COUNT = 10;
 	public WordNet wn;
 	public SentenceAnalyzer sa;
+	private Generation currentGeneration;
 	
 	public GeneticAlgorithm(WordNet wn, SentenceAnalyzer sa) {
 		this.wn = wn;
@@ -46,12 +47,14 @@ public class GeneticAlgorithm {
 		return verse;
 	}
 	
-	public ArrayList<Verse> getOneGeneration() {
+	public Generation getOneGeneration() {
 		ArrayList<Verse> verses = new ArrayList<Verse>();
 		for (int i = 0; i < SPECIMEN_COUNT; i++) {
 			verses.add(getOneVerse());
 		}
-		return verses;
+		currentGeneration = new Generation(verses);
+		
+		return currentGeneration;
 		
 	}
 
