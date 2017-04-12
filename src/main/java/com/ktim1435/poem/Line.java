@@ -23,4 +23,8 @@ public class Line implements PoeticElement {
 		String [] texts = text.toLowerCase().split("[^aeiouáéőúóüöű]");
 		return texts[texts.length-1];
 	}
+	
+	public int getVowellCount() {
+		return text.toLowerCase().split("[aeiouáéőúóüöű]").length-1;
+	}
 }

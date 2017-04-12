@@ -40,9 +40,9 @@ public class App
 //    	
     	GeneticAlgorithm ga = new GeneticAlgorithm(wn,sa);
     	ArrayList<Verse> verses = ga.getOneGeneration();
-    	System.out.println();
+//    	System.out.println();
     	for (Verse v:verses) {
-        	System.out.println(v + "\n");
+        	System.out.println(v + "" + v.getRithm().calculateRithmValue() + " : " + v.getRhyme().calculateRhymeValue() + "\n");
     	}
 
 //    	Sentence s = new Sentence("Az ipafai papnak fa pipaja van.",wn);
@@ -52,8 +52,8 @@ public class App
 
 
     	
-//    	Verse p = new Verse("Az ipafai papnak\nfapipaja lesz,\nezert az ipafai fapipa,\npapi stressz.");
-//    	System.out.println(p.getRhyme().calculateRhymeValue());
+//    	Verse p = new Verse("Az ipafai papnak\nfapipaja lehetne,\nezert az ipafai fapipa,\npapi stressz.");
+//    	System.out.println(p.getRithm().calculateRithmValue() + p.getRhyme().calculateRhymeValue());
 //        System.out.println(p);
     }
 }

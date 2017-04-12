@@ -50,13 +50,18 @@ public class Rhyme {
 				chars.add(c);
 			}
 		}
-		if (distinct == 4) {
-			return 0;	
-		}
-		if (distinct == 3) {
-			return 1;
-		}
-		return 2;
+		int result = 0;
+		
+		if (distinct == 4)
+			result = 0;
+		else if (distinct == 3)
+			result = 2;
+		else 
+			result = 4;
+		
+		
+		return result;
+		
 		
 		
 	}
