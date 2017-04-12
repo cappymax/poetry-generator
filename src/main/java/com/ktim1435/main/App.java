@@ -39,7 +39,7 @@ public class App
 //    	sa.generateSentenceFile();
 //    	
     	GeneticAlgorithm ga = new GeneticAlgorithm(wn,sa);
-    	ArrayList<Verse> verses = ga.getOneGeneration().getSpecimens();
+    	ArrayList<Verse> verses = ga.getFirstGeneration().getSpecimens();
 //    	System.out.println();
     	for (Verse v:verses) {
         	System.out.println(v + "" + v.getRithm().calculateRithmValue() + " : " + v.getRhyme().calculateRhymeValue() + "\n");

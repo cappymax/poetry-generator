@@ -47,6 +47,17 @@ public class GeneticAlgorithm {
 		return verse;
 	}
 	
+	public Generation getFirstGeneration() {
+		ArrayList<Verse> verses = new ArrayList<Verse>();
+		for (int i = 0; i < SPECIMEN_COUNT; i++) {
+			verses.add(getOneVerse());
+		}
+		currentGeneration = new Generation(verses);
+		
+		return currentGeneration;
+		
+	}
+	
 	public Generation getOneGeneration() {
 		ArrayList<Verse> verses = new ArrayList<Verse>();
 		for (int i = 0; i < SPECIMEN_COUNT; i++) {
