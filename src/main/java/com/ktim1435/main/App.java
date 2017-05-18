@@ -2,6 +2,7 @@ package com.ktim1435.main;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import com.ktim1435.genetic.GeneticAlgorithm;
@@ -56,8 +57,8 @@ public class App
 //        	System.out.println(v + "" + v.getRithm().calculateRithmValue()  + " : " + v.getRhyme().calculateRhymeValue() + "\n");
 //    	}
 //    	
-    	for (String s : sa.afterType.get("a").keySet())
-    		System.out.println(s +" : "+ sa.afterType.get("a").get(s));
+    	for (String s : sa.getAfterTypes("az").keySet())
+    		System.out.println(s +" : "+ sa.getAfterTypes("az").get(s));
     	
 
     	

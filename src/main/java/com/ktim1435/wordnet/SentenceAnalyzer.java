@@ -31,8 +31,11 @@ public class SentenceAnalyzer {
 	
 
 	public Map<String, TreeMap<String, Integer>> beforeType = new TreeMap<String, TreeMap<String,Integer>>();
+	public  Map<String,SortedSet<Entry<String, Integer>>> sortedBeforeType;
 	
 	public  Map<String, TreeMap<String, Integer>> afterType = new TreeMap<String, TreeMap<String,Integer>>();
+	public  Map<String,SortedSet<Entry<String, Integer>>> sortedAfterType;
+	
 	
 	public Map<String, Integer> wordStats = new TreeMap<String, Integer>();
 	public Map<String, Integer> rootStats = new TreeMap<String, Integer>();
@@ -179,7 +182,7 @@ public class SentenceAnalyzer {
 			sortedWordStats = entriesSortedByValues(wordStats);
 			sortedRootStats = entriesSortedByValues(rootStats);
 			sortedTypeStats = entriesSortedByValues(typeStats);
-			
+				
 
 //			System.out.println("Cumsum words");
 //			wordStats = cumSum(wordStats);
@@ -347,7 +350,6 @@ public class SentenceAnalyzer {
 	}
 
 	public TreeMap<String, Integer> getAfterTypes(String w) {
-
 		return afterType.get(w);
 	}
 	
