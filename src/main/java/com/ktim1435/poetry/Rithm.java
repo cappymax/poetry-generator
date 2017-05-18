@@ -8,9 +8,10 @@ import com.ktim1435.poem.Line;
 
 public class Rithm {
 	private String rithmString = "";
-	private Map<String, Integer> vowellMap = new HashMap();
+	private Map<String, Integer> vowellCountMap = new HashMap();
 	
 	public void calculateRithm(List<Line> lines) {
+		rithmString = "";
 		for (Line l : lines) 
 			if (!lines.get(lines.size()-1).equals(l))
 				rithmString += l.getVowellCount() + "/";
@@ -21,14 +22,18 @@ public class Rithm {
 	
 	public int calculateRithmValue() {
 		String[] splittedRithm = rithmString.split("/");
+		vowellCountMap.clear();
+		
 		for (String s : splittedRithm) 
-			if (vowellMap.containsKey(s)) 
-				vowellMap.put(s, vowellMap.get(s)+1);
+			if (vowellCountMap.containsKey(s)) 
+				vowellCountMap.put(s, vowellCountMap.get(s)+1);
 			else
-				vowellMap.put(s, 1);
+				vowellCountMap.put(s, 1);
 		int max = 0;
-		for (String s : vowellMap.keySet()) 
-			max = Math.max(vowellMap.get(s), max);
+		for (String s : vowellCountMap.keySet()) 
+			if (vowellCountMap.get(s) > max) 
+				max = vowellCountMap.get(s);
+
 		return max;
 	}
 	

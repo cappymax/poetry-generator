@@ -1,12 +1,16 @@
 package com.ktim1435.poem;
 
+import java.util.Random;
+
+import com.ktim1435.wordnet.SentenceAnalyzer;
+
 public class Line implements PoeticElement {
 	private String text = "";
 
 	public Line(String text) {
 		this.text = text;
 	}
-	
+
 	public String getText() {
 		return text;
 	}
@@ -14,17 +18,100 @@ public class Line implements PoeticElement {
 	public void setText(String text) {
 		this.text = text;
 	}
-	
+
 	public String toString() {
 		return text;
 	}
-	
+
 	public String getLastVowell() {
-		String [] texts = text.toLowerCase().split("[^aeiouáéőúóüöű]");
-		return texts[texts.length-1];
+		String[] texts = text.toLowerCase().split("[^aeiouáéőúóüöű]");
+		return texts[texts.length - 1];
 	}
-	
+
 	public int getVowellCount() {
-		return text.toLowerCase().split("[aeiouáéőúóüöű]").length-1;
+		return text.toLowerCase().split("[aeiouáéőúóüöű]").length - 1;
+	}
+
+	public void changeWord(SentenceAnalyzer sa) {
+		String newWord = sa.getWord().getText();
+		String[] words = text.split(" ");
+		text = "";
+		Random r = new Random();
+		int wordNr = r.nextInt(words.length);
+
+		for (int i = 0; i < words.length; i++) {
+			if (i == wordNr)
+				text += newWord + " ";
+			else
+				text += words[i] + " ";
+			if (i == 0)
+				text = text.substring(0, 1).toUpperCase() + text.substring(1);
+		}
+	}
+
+	public void deleteWord(int MIN_WORD_COUNT) {
+		String[] words = text.split(" ");
+
+		if (words.length > MIN_WORD_COUNT) {
+			text = "";
+			Random r = new Random();
+			int wordNr = r.nextInt(words.length);
+
+			for (int i = 0; i < words.length; i++) {
+				if (i != wordNr)
+					text += words[i] + " ";
+
+			}
+			text = text.substring(0, 1).toUpperCase() + text.substring(1);
+		}
+	}
+
+	public void addWord(SentenceAnalyzer sa, int MAX_WORD_COUNT) {
+		String[] words = text.split(" ");
+		
+		if (words.length < MAX_WORD_COUNT) {
+			String newWord = sa.getWord().getText();
+			text = "";
+			Random r = new Random();
+			int wordNr = r.nextInt(words.length);
+	
+			for (int i = 0; i < words.length; i++) {
+				if (i == wordNr) {
+					text += newWord + " ";
+					i--;
+					wordNr = -1;
+				}
+				else
+					text += words[i] + " ";
+				if (i == 0)
+					text = text.substring(0, 1).toUpperCase() + text.substring(1);
+			}
+		}
+	}
+
+	public void switchup() {
+		String[] words = text.split(" ");
+		text = "";
+		Random r = new Random();
+		int wordNr1 = r.nextInt(words.length);
+		int wordNr2 = r.nextInt(words.length);
+		
+		while (wordNr1 == wordNr2)
+			wordNr2 = r.nextInt(words.length);
+		
+		String word1 = words[wordNr1].toLowerCase();
+		String word2 = words[wordNr2].toLowerCase();
+		
+		for (int i = 0; i < words.length; i++) {
+			if (i == wordNr1)
+				text += word2 + " ";
+			else if (i == wordNr2)
+				text += word1 + " ";
+			else
+				text += words[i] + " ";
+			if (i == 0)
+				text = text.substring(0, 1).toUpperCase() + text.substring(1);
+		}
+		
 	}
 }

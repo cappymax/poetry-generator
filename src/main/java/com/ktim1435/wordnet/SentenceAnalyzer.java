@@ -28,6 +28,12 @@ public class SentenceAnalyzer {
 	private WordNet wn;
 	private Random r = new Random(System.currentTimeMillis());
 	// public ArrayList<Sentence> sentences = new ArrayList<Sentence>();
+	
+
+	public Map<String, TreeMap<String, Integer>> beforeType = new TreeMap<String, TreeMap<String,Integer>>();
+	
+	public  Map<String, TreeMap<String, Integer>> afterType = new TreeMap<String, TreeMap<String,Integer>>();
+	
 	public Map<String, Integer> wordStats = new TreeMap<String, Integer>();
 	public Map<String, Integer> rootStats = new TreeMap<String, Integer>();
 	public Map<String, Integer> typeStats = new TreeMap<String, Integer>();
@@ -87,7 +93,7 @@ public class SentenceAnalyzer {
 
 				for (int i = 0; i < splittedText.length; i++) {
 					Word w = new Word(splittedText[i], splittedRoots[i], splittedTypes[i]);
-
+						
 					if (typeStats.containsKey(w.getType()))
 						typeStats.put(w.getType(), typeStats.get(w.getType()) + 1);
 					else
@@ -99,8 +105,52 @@ public class SentenceAnalyzer {
 						rootStats.put(w.getRoot(), 1);
 
 					if (wordStats.containsKey(w.toString())) {
+//						//itt kell az elotte es utana levoket
+						TreeMap<String, Integer> before = beforeType.get(w.getText());
+						TreeMap<String, Integer> after = afterType.get(w.getText());		
+//						
+						String beforeText = i == 0 ? "nothing" : splittedTypes[i-1];
+						String afterText = i == splittedText.length - 1 ? "nothing" : splittedTypes[i+1];
+//						
+//						
+						if (!before.containsKey(beforeText)) {
+							before.put(beforeText, 1);
+						} else {
+							before.put(beforeText, before.get(beforeText) + 1);
+						}
+//				
+						if (!after.containsKey(afterText)) {
+							after.put(afterText, 1);
+						} else {
+							after.put(afterText, after.get(afterText) + 1);
+						}
+//						
+//						
+//						
+						beforeType.put(w.getText(), before);
+						afterType.put(w.getText(), after);
+						
 						wordStats.put(w.toString(), wordStats.get(w.toString()) + 1);
 					} else {
+						TreeMap<String, Integer> before = new TreeMap<String, Integer>();
+						TreeMap<String, Integer> after = new TreeMap<String, Integer>();	
+						if (i == 0) { 
+							before.put("nothing", 1);
+							beforeType.put(w.getText(), before);
+						} else {
+							before.put(splittedTypes[i-1], 1);
+							beforeType.put(w.getText(), before);
+						}
+						if (i == splittedText.length -1) {
+							after.put("nothing", 1);
+							afterType.put(w.getText(), after);
+						}
+						else {
+							after.put(splittedTypes[i+1], 1);
+							afterType.put(w.getText(), after);
+						}
+//							
+						
 						words.add(w);
 						wordStats.put(w.toString(), 1);
 					}
@@ -292,4 +342,13 @@ public class SentenceAnalyzer {
 		return result.get(resultSet[i]);
 	}
 
+	public TreeMap<String, Integer> getBeforeTypes(String w) {
+		return beforeType.get(w);
+	}
+
+	public TreeMap<String, Integer> getAfterTypes(String w) {
+
+		return afterType.get(w);
+	}
+	
 }
