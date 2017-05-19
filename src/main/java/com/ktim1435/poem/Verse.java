@@ -132,5 +132,13 @@ public class Verse implements PoeticElement {
 		return v;
 	}
 	
+	public int calculateSemantics(SentenceAnalyzer sa) {
+		int s = 0;
+		for (int i = 0; i < lines.size(); i++) {
+			s += lines.get(i).calculateSemantics(sa);
+		}
+		return s / lines.size();
+	}
+	
 	
 }

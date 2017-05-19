@@ -44,21 +44,21 @@ public class App
     	System.out.println("****************\nInitialization\n*******************");
     	GeneticAlgorithm ga = new GeneticAlgorithm(wn,sa);
     	ArrayList<Verse> verses = ga.getFirstGeneration().getSpecimens();
-//    	System.out.println("***************\nFinished\n*******************");
+    	System.out.println("***************\nFinished\n*******************");
+    	
+    	System.out.println("****************\nFirst generation\n******************");
+    	for (Verse v:verses) {
+        	System.out.println(v + "" + v.getRithm().calculateRithmValue()  + " : " + v.getRhyme().calculateRhymeValue() + " : " + v.calculateSemantics(sa) + "\n");
+    	}
 //    	
-//    	System.out.println("****************\nFirst generation\n******************");
-//    	for (Verse v:verses) {
-//        	System.out.println(v + "" + v.getRithm().calculateRithmValue()  + " : " + v.getRhyme().calculateRhymeValue() + "\n");
-//    	}
-//    	
-//    	verses = ga.getOneGeneration().getSpecimens();
-//    	System.out.println("*****************\nSecond generation\n******************");
-//    	for (Verse v:verses) {
-//        	System.out.println(v + "" + v.getRithm().calculateRithmValue()  + " : " + v.getRhyme().calculateRhymeValue() + "\n");
-//    	}
-//    	
-    	for (String s : sa.getAfterTypes("az").keySet())
-    		System.out.println(s +" : "+ sa.getAfterTypes("az").get(s));
+    	while (verses.get(0).getRithm().calculateRithmValue() + verses.get(0).getRhyme().calculateRhymeValue() + verses.get(0).calculateSemantics(sa) < 10)
+    		verses = ga.getOneGeneration().getSpecimens();
+    	System.out.println("*****************\nSecond generation\n******************");
+    	for (Verse v:verses) {
+        	System.out.println(v + "" + v.getRithm().calculateRithmValue()  + " : " + v.getRhyme().calculateRhymeValue() + " : " + v.calculateSemantics(sa) + "\n");
+    	}
+    	
+
     	
 
     	

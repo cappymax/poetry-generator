@@ -4,9 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
@@ -31,12 +34,14 @@ public class SentenceAnalyzer {
 	
 
 	public Map<String, TreeMap<String, Integer>> beforeType = new TreeMap<String, TreeMap<String,Integer>>();
-	public  Map<String,SortedSet<Entry<String, Integer>>> sortedBeforeType;
+	public  Map<String,ArrayList<Entry<String, Integer>>> sortedBeforeType = new TreeMap();
 	
 	public  Map<String, TreeMap<String, Integer>> afterType = new TreeMap<String, TreeMap<String,Integer>>();
-	public  Map<String,SortedSet<Entry<String, Integer>>> sortedAfterType;
+	public  Map<String,ArrayList<Entry<String, Integer>>> sortedAfterType = new TreeMap();;
 	
 	
+	
+	public Map<String, String> typeMap = new TreeMap<String, String>();
 	public Map<String, Integer> wordStats = new TreeMap<String, Integer>();
 	public Map<String, Integer> rootStats = new TreeMap<String, Integer>();
 	public Map<String, Integer> typeStats = new TreeMap<String, Integer>();
@@ -152,7 +157,9 @@ public class SentenceAnalyzer {
 							after.put(splittedTypes[i+1], 1);
 							afterType.put(w.getText(), after);
 						}
-//							
+						
+//						
+						typeMap.put(w.getText(), w.getType());
 						
 						words.add(w);
 						wordStats.put(w.toString(), 1);
@@ -183,7 +190,67 @@ public class SentenceAnalyzer {
 			sortedRootStats = entriesSortedByValues(rootStats);
 			sortedTypeStats = entriesSortedByValues(typeStats);
 				
+			for (String s : afterType.keySet()) {
+				TreeMap<String, Integer> after = afterType.get(s);
+				SortedSet<Entry<String, Integer>> sortedAfter = entriesSortedByValues(after);
+				ArrayList<Entry<String,Integer>> sortedAfter2 = new ArrayList<Map.Entry<String,Integer>>();
+				int i = 0;
+				for (Entry e : sortedAfter.toArray(new Entry[1])) {
+					SimpleEntry e2 = new SimpleEntry(e.getKey(),e.getValue());
+					if (i == sortedAfter.size() - 6) {
+						e2.setValue(1);
+					}  else if (i == sortedAfter.size() - 5) {
+						e2.setValue(2);
+					} else if (i == sortedAfter.size() - 4) {
+						e2.setValue(3);
+					} else if (i == sortedAfter.size() - 3) {
+						e2.setValue(4);
+					} else if (i == sortedAfter.size() - 2) {
+						e2.setValue(5);
+					} else if (i == sortedAfter.size() - 1 ) {
+						e2.setValue(6);
+					}else e2.setValue(0);
+					
+					
+					i++;
+					sortedAfter2.add(e2);
 
+				}
+				
+
+				sortedAfterType.put(s, sortedAfter2);
+			}
+			
+			
+			
+			
+			for (String s : beforeType.keySet()) {
+				TreeMap<String, Integer> before = beforeType.get(s);
+				SortedSet<Entry<String, Integer>> sortedBefore = entriesSortedByValues(before);
+				ArrayList<Entry<String,Integer>> sortedBefore2 = new ArrayList<Map.Entry<String,Integer>>();
+				int i = 0;
+				for (Entry<String, Integer> e : sortedBefore) {
+					if (i == sortedBefore.size() - 6) {
+						e.setValue(2);
+					} else if (i == sortedBefore.size() - 7) {
+						e.setValue(1);
+					} else if (i == sortedBefore.size() - 5) {
+						e.setValue(3);
+					} else if (i == sortedBefore.size() - 4) {
+						e.setValue(4);
+					} else if (i == sortedBefore.size() - 2) {
+						e.setValue(5);
+					} else if (i == sortedBefore.size() - 1) {
+						e.setValue(6);
+					} else e.setValue(0);
+					
+					i++;
+					sortedBefore2.add(e);
+				}
+				
+				sortedBeforeType.put(s, sortedBefore2);
+			}
+			
 //			System.out.println("Cumsum words");
 //			wordStats = cumSum(wordStats);
 //			System.out.println("CumSum roots");
@@ -340,17 +407,22 @@ public class SentenceAnalyzer {
 		}
 		return null;
 	}
-
+	
 	private Integer getIthResultStat(int i,Map<Word,Integer> result, Object[] resultSet) {
 		return result.get(resultSet[i]);
 	}
 
-	public TreeMap<String, Integer> getBeforeTypes(String w) {
-		return beforeType.get(w);
+	public ArrayList<Entry<String, Integer>> getBeforeTypes(String w) {
+		return sortedBeforeType.get(w);
 	}
 
-	public TreeMap<String, Integer> getAfterTypes(String w) {
-		return afterType.get(w);
+	public ArrayList<Entry<String, Integer>> getAfterTypes(String w) {
+	
+		return sortedAfterType.get(w);
+	}
+	
+	public String getWordType(String a) {
+		return typeMap.get(a);
 	}
 	
 }

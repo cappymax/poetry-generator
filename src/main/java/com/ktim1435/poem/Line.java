@@ -1,5 +1,6 @@
 package com.ktim1435.poem;
 
+import java.util.Map.Entry;
 import java.util.Random;
 
 import com.ktim1435.wordnet.SentenceAnalyzer;
@@ -113,5 +114,32 @@ public class Line implements PoeticElement {
 				text = text.substring(0, 1).toUpperCase() + text.substring(1);
 		}
 		
+	}
+
+	public int calculateSemantics(SentenceAnalyzer sa) {
+		String[] words = text.split(" ");
+		String before = "";
+		String after = "";
+		int s = 0;
+		for (int i = 0; i < words.length; i++) {
+			try {
+				if (i == 0) before = "nothing";
+				else before = sa.getWordType(words[i-1].toLowerCase());
+				if (i >= words.length - 1) after = "nothing";
+				else after = sa.getWordType(words[i+1]);
+				
+				for (Entry<String,Integer> e : sa.getAfterTypes(words[i].toLowerCase()))
+					if (e.getKey().equals(after)) s += e.getValue();
+				
+				for (Entry<String,Integer> e : sa.getBeforeTypes(words[i].toLowerCase()))
+					if (e.getKey().equals(before)) s += e.getValue();
+			}
+		
+			catch (Exception e) {
+				//System.out.println(sa.getWordType(words[i-1].toLowerCase()));
+			}
+		}
+		
+		return s / (2 * words.length);
 	}
 }

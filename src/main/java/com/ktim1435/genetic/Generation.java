@@ -5,21 +5,22 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import com.ktim1435.poem.Verse;
+import com.ktim1435.wordnet.SentenceAnalyzer;
 
 public class Generation {
 	private ArrayList<Verse> specimens = new ArrayList<Verse>();
 	
-	private int getScore(Verse v) {
-		return v.getRithm().calculateRithmValue() + v.getRhyme().calculateRhymeValue();
+	private int getScore(Verse v, SentenceAnalyzer sa) {
+		return v.getRithm().calculateRithmValue() + v.getRhyme().calculateRhymeValue() + v.calculateSemantics(sa);
 	}
 	
-	public Generation(ArrayList<Verse> verses) {
+	public Generation(ArrayList<Verse> verses, final SentenceAnalyzer sa) {
 		this.specimens = verses;
 
 		Collections.sort(verses, new Comparator<Verse>() {
 	        public int compare(Verse v1, Verse v2)
 	        {
-	            return  ((Integer)getScore(v2)).compareTo((Integer)getScore(v1));
+	            return  ((Integer)getScore(v2, sa)).compareTo((Integer)getScore(v1, sa));
 	        }
 	    });
 	}

@@ -65,7 +65,7 @@ public class GeneticAlgorithm {
 		for (int i = 0; i < SPECIMEN_COUNT; i++) {
 			verses.add(getOneVerse());
 		}
-		currentGeneration = new Generation(verses);
+		currentGeneration = new Generation(verses, sa);
 
 		return currentGeneration;
 	}
@@ -115,7 +115,7 @@ public class GeneticAlgorithm {
 		
 		System.out.println("Finished new generation of specimens\n");
 		
-		currentGeneration = new Generation(finalSpecimens);
+		currentGeneration = new Generation(finalSpecimens, sa);
 	
 		
 		return currentGeneration;
