@@ -137,7 +137,13 @@ public class Verse implements PoeticElement {
 		for (int i = 0; i < lines.size(); i++) {
 			s += lines.get(i).calculateSemantics(sa);
 		}
-		return s / lines.size();
+		int repeating = 0;
+		for (int i = 0; i < lines.size() - 1; i++) {
+			for (int j = i + 1; j < lines.size(); j++) {
+				if (lines.get(i).getText().equals(lines.get(j).getText())) repeating++;
+			}
+		}
+		return (s / lines.size()) - repeating;
 	}
 	
 	

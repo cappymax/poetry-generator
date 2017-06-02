@@ -51,7 +51,7 @@ public class App
         	System.out.println(v + "" + v.getRithm().calculateRithmValue()  + " : " + v.getRhyme().calculateRhymeValue() + " : " + v.calculateSemantics(sa) + "\n");
     	}
 //    	
-    	while (verses.get(0).getRithm().calculateRithmValue() + verses.get(0).getRhyme().calculateRhymeValue() + verses.get(0).calculateSemantics(sa) < 10)
+    	while (verses.get(0).getRithm().calculateRithmValue() + verses.get(0).getRhyme().calculateRhymeValue() + verses.get(0).calculateSemantics(sa) < 13)
     		verses = ga.getOneGeneration().getSpecimens();
     	System.out.println("*****************\nSecond generation\n******************");
     	for (Verse v:verses) {
