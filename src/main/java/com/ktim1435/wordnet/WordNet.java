@@ -14,6 +14,7 @@ import com.ktim1435.language.Word;
 
 public class WordNet {
 	private Document doc;
+	private ArrayList<String> domains = new ArrayList<String>();
 	private ArrayList<Word> words = new ArrayList<Word>();
 	private Map<String, ArrayList<Word>> separatedWords = new HashMap<String, ArrayList<Word>>();
 	private Map<String, String> typesMap = new HashMap<String, String>();
@@ -27,10 +28,24 @@ public class WordNet {
 			prepareTypesMap();
 			doc = openDoc();
 			parseDoc();
+			praseDocForDomains();
 			addSpecificWords();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void praseDocForDomains() {
+		NodeList parsedDomains = doc.getElementsByTagName("DOMAIN");
+		for (int i = 0; i < parsedDomains.getLength(); i++) {
+			String name = parsedDomains.item(i).getTextContent();
+			if (!domains.contains(name))
+				domains.add(name);
+		}
+	}
+	
+	public ArrayList<String> getDomains() {
+		return domains;
 	}
 
 	private void prepareTypesMap() {
@@ -55,27 +70,28 @@ public class WordNet {
 	}
 
 	private void addSpecificWords() {
-		words.add(new Word("én","én","Pronoun"));
-		words.add(new Word("te","te","Pronoun"));
-		words.add(new Word("ő","ő","Pronoun"));
-		words.add(new Word("mi","mi","Pronoun"));
-		words.add(new Word("ti","ti","Pronoun"));
-		words.add(new Word("ők","ők","Pronoun"));
-		words.add(new Word("engem","engem","Pronoun"));
-		words.add(new Word("téged","téged","Pronoun"));
-		words.add(new Word("őt","őt","Pronoun"));
-		words.add(new Word("minket","minket","Pronoun"));
-		words.add(new Word("titeket","titeket","Pronoun"));
-		words.add(new Word("őket","őket","Pronoun"));
-		words.add(new Word("ez","ez","Pronoun"));
-		words.add(new Word("egy","egy","Article"));
-		words.add(new Word("a","a","Article"));
-		words.add(new Word("az","az","Article"));
-		words.add(new Word("mind","mind","Number"));
+		words.add(new Word("én", "én", "Pronoun"));
+		words.add(new Word("te", "te", "Pronoun"));
+		words.add(new Word("ő", "ő", "Pronoun"));
+		words.add(new Word("mi", "mi", "Pronoun"));
+		words.add(new Word("ti", "ti", "Pronoun"));
+		words.add(new Word("ők", "ők", "Pronoun"));
+		words.add(new Word("engem", "engem", "Pronoun"));
+		words.add(new Word("téged", "téged", "Pronoun"));
+		words.add(new Word("őt", "őt", "Pronoun"));
+		words.add(new Word("minket", "minket", "Pronoun"));
+		words.add(new Word("titeket", "titeket", "Pronoun"));
+		words.add(new Word("őket", "őket", "Pronoun"));
+		words.add(new Word("ez", "ez", "Pronoun"));
+		words.add(new Word("egy", "egy", "Article"));
+		words.add(new Word("a", "a", "Article"));
+		words.add(new Word("az", "az", "Article"));
+		words.add(new Word("mind", "mind", "Number"));
 	}
 
 	/**
 	 * Opens the huwn.xml document for later parsing.
+	 * 
 	 * @return
 	 * @throws ParserConfigurationException
 	 * @throws SAXException
@@ -98,6 +114,7 @@ public class WordNet {
 
 	/**
 	 * Calls for word parsing of words in LITERAL tags.
+	 * 
 	 * @throws Exception
 	 */
 	private void parseDoc() throws Exception {
@@ -105,7 +122,6 @@ public class WordNet {
 		parseWords(literalList);
 	}
 
-	
 	private void parseWords(NodeList list) throws Exception {
 		for (int i = 0; i < list.getLength(); i++)
 			processIthWord(list, i);
@@ -113,14 +129,23 @@ public class WordNet {
 
 	private void processIthWord(NodeList list, int i) throws Exception {
 		String type = getTypeOfWordNode(list.item(i));
+		String domain = getDomainOfWordNode(list.item(i));
 		String content = getSingleContentOfWordNode(list.item(i));
 		
 		if (isValidContent(content))
-			addWordToWordNet(type, content);
+			addWordToWordNet(type, content, domain);
 	}
 
-	private void addWordToWordNet(String type, String content)   {
-			words.add(new Word(content, content, typesMap.get(type)));
+	private String getDomainOfWordNode(Node item) {
+		NodeList cn = item.getParentNode().getParentNode().getChildNodes();
+		for (int i = 0; i<cn.getLength(); i++) 
+			if(cn.item(i).getNodeName().equals("DOMAIN"))
+				return cn.item(i).getTextContent();
+		return "NODOM";
+	}
+
+	private void addWordToWordNet(String type, String content, String domain) {
+		words.add(new Word(content, content, typesMap.get(type), domain));
 	}
 
 	private boolean isValidContent(String content) {
@@ -132,8 +157,7 @@ public class WordNet {
 	}
 
 	private String getTypeOfWordNode(Node i) {
-		return i.getParentNode().getParentNode().getChildNodes().item(0).getTextContent()
-				.split("-")[2];
+		return i.getParentNode().getParentNode().getChildNodes().item(0).getTextContent().split("-")[2];
 	}
 
 	/**
@@ -160,14 +184,15 @@ public class WordNet {
 		if (noResultFound(result))
 			throw new Exception("Not Mapped Word");
 		else {
-			//IF WANTED
-			//addWordToWordNet(result.getType(), result.getText());
+			// IF WANTED
+			// addWordToWordNet(result.getType(), result.getText());
 			return result.getType();
 		}
 	}
-	
+
 	/**
 	 * Returns the root word that is already in the WordNet
+	 * 
 	 * @param word
 	 * @return
 	 * @throws Exception
@@ -188,8 +213,8 @@ public class WordNet {
 		if (noResultFound(result))
 			throw new Exception("Not Mapped Word");
 		else {
-			//IF WANTED
-			//addWordToWordNet(result.getType(), result.getText());
+			// IF WANTED
+			// addWordToWordNet(result.getType(), result.getText());
 			return result;
 		}
 	}
@@ -209,16 +234,16 @@ public class WordNet {
 	private String getOneDeepType(String word) throws Exception {
 		word = word.toLowerCase();
 		Word w = getWord(word);
-		
+
 		if (word.matches("[0-9]*"))
 			return "Number";
-		
+
 		if (w != null)
 			return w.getType();
 
 		throw new Exception("Not Mapped Word");
 	}
-	
+
 	/**
 	 * Generate a random word with a set type. Types include:<br>
 	 * noun<br>
@@ -234,39 +259,41 @@ public class WordNet {
 	 *             - non existent type
 	 */
 	public Word getWordByType(String type) {
-		Random r = new Random();	
+		Random r = new Random();
 		ArrayList<Word> localWords;
 		int i = 0;
-		if (separatedWords.containsKey(type)) 
+		if (separatedWords.containsKey(type))
 			localWords = separatedWords.get(type);
 		else {
 			localWords = new ArrayList<Word>();
-			for (Word word : words) 
-				if (word.getType().equals(type)) 
+			for (Word word : words)
+				if (word.getType().equals(type))
 					localWords.add(word);
 			separatedWords.put(type, localWords);
 		}
 		i = r.nextInt(localWords.size());
-		
+
 		return localWords.get(i);
 	}
-	
+
 	/**
 	 * Returns a random word.
+	 * 
 	 * @return
 	 */
 	public Word getRandomWord() {
 		Random r = new Random();
 		return words.get(r.nextInt(words.size()));
 	}
-	
+
 	/**
 	 * Get the full word object if it already exists in wordnet, only by string.
+	 * 
 	 * @param word
 	 * @return
 	 */
 	private Word getWord(String word) {
-		for (Word w : words) 
+		for (Word w : words)
 			if (w.getText().equals(word))
 				return w;
 		return null;
@@ -343,6 +370,10 @@ public class WordNet {
 		word = word.replace("ű", "u");
 		word = word.replace("í", "i");
 		return word;
+	}
+
+	public String getDomainOfWordByRoot(String word) {
+		return getWord(word).getDomain();
 	}
 
 }

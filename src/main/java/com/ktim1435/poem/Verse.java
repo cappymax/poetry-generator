@@ -145,6 +145,14 @@ public class Verse implements PoeticElement {
 		}
 		return (s / lines.size()) - repeating;
 	}
+
+	public int calculateDomainScore(SentenceAnalyzer sa, String string) {
+		int s = 0;
+		for (int i = 0; i < lines.size(); i++) {
+			s += lines.get(i).calculateDomainScore(sa, string);
+		}
+		return s / lines.size();
+	}
 	
 	
 }

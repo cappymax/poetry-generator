@@ -4,6 +4,7 @@ public class Word implements Comparable{
 	private String text = "";
 	private String type = "";
 	private String root = "";
+	private String domain ="";;
 
 	public Word() {
 		// semmi
@@ -18,6 +19,13 @@ public class Word implements Comparable{
 		this.text = text;
 		this.root = root;
 		this.type = type;
+	}
+	
+	public Word(String text, String root, String type, String domain) {
+		this.text = text;
+		this.root = root;
+		this.type = type;
+		this.domain  = domain;
 	}
 	
 	public String getText() {
@@ -42,6 +50,14 @@ public class Word implements Comparable{
 
 	public void setRoot(String root) {
 		this.root = root;
+	}
+	
+	public String getDomain() {
+		return this.domain;
+	}
+
+	public void setDomain(String domain) {
+		this.domain = domain;
 	}
 	
 	@Override

@@ -1,29 +1,52 @@
 package com.ktim1435.main;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.event.ChangeListener;
+
 import com.ktim1435.genetic.GeneticAlgorithm;
 import com.ktim1435.poem.Verse;
+import com.ktim1435.view.PGFrame;
 import com.ktim1435.wordnet.SentenceAnalyzer;
 import com.ktim1435.wordnet.WordNet;
+
+import javafx.scene.text.Font;
 
 
 public class App 
 {
     public static void main( String[] args )
     {
+    	PGFrame frame = new PGFrame();
     	
-    	WordNet wn = new WordNet();
     	
-    	SentenceAnalyzer sa = new SentenceAnalyzer(wn);
-    	try {
-			sa.readSentenceFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    	
+    	
+    	
+    	
+ 	
+    	
+    	
+    	
+
+
+    	
+
     	
 //    	HashMap<String,Integer> types = new HashMap();
 //    	for (int i=0; i<100; i++) {
@@ -38,25 +61,10 @@ public class App
 //    	String text = sa.getWord().getText();
 //    	System.out.println(text);
 //    	
-//    	sa.generateSentenceFile();
+
 //    	
     	
-    	System.out.println("****************\nInitialization\n*******************");
-    	GeneticAlgorithm ga = new GeneticAlgorithm(wn,sa);
-    	ArrayList<Verse> verses = ga.getFirstGeneration().getSpecimens();
-    	System.out.println("***************\nFinished\n*******************");
-    	
-    	System.out.println("****************\nFirst generation\n******************");
-    	for (Verse v:verses) {
-        	System.out.println(v + "" + v.getRithm().calculateRithmValue()  + " : " + v.getRhyme().calculateRhymeValue() + " : " + v.calculateSemantics(sa) + "\n");
-    	}
-//    	
-    	while (verses.get(0).getRithm().calculateRithmValue() + verses.get(0).getRhyme().calculateRhymeValue() + verses.get(0).calculateSemantics(sa) < 13)
-    		verses = ga.getOneGeneration().getSpecimens();
-    	System.out.println("*****************\nSecond generation\n******************");
-    	for (Verse v:verses) {
-        	System.out.println(v + "" + v.getRithm().calculateRithmValue()  + " : " + v.getRhyme().calculateRhymeValue() + " : " + v.calculateSemantics(sa) + "\n");
-    	}
+ 
     	
 
     	

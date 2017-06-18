@@ -42,6 +42,7 @@ public class SentenceAnalyzer {
 	
 	
 	public Map<String, String> typeMap = new TreeMap<String, String>();
+	public Map<String, String> domainMap = new TreeMap<String, String>();
 	public Map<String, Integer> wordStats = new TreeMap<String, Integer>();
 	public Map<String, Integer> rootStats = new TreeMap<String, Integer>();
 	public Map<String, Integer> typeStats = new TreeMap<String, Integer>();
@@ -53,6 +54,7 @@ public class SentenceAnalyzer {
 
 	ArrayList<Word> words = new ArrayList<Word>();
 
+	//sorting on a set with custom compare, special thanks to stack overflow for this one
 	static <K, V extends Comparable<? super V>> SortedSet<Map.Entry<K, V>> entriesSortedByValues(Map<K, V> map) {
 		SortedSet<Map.Entry<K, V>> sortedEntries = new TreeSet<Map.Entry<K, V>>(new Comparator<Map.Entry<K, V>>() {
 			public int compare(Map.Entry<K, V> e1, Map.Entry<K, V> e2) {
@@ -100,7 +102,13 @@ public class SentenceAnalyzer {
 				splittedTypes = splittedLine[2].split(" ");
 
 				for (int i = 0; i < splittedText.length; i++) {
-					Word w = new Word(splittedText[i], splittedRoots[i], splittedTypes[i]);
+					String domain;
+					try {
+						domain = wn.getDomainOfWordByRoot(splittedRoots[i]);
+					} catch(Exception e) {
+						domain = "NODOM";
+					}
+					Word w = new Word(splittedText[i], splittedRoots[i], splittedTypes[i], domain);
 						
 					if (typeStats.containsKey(w.getType()))
 						typeStats.put(w.getType(), typeStats.get(w.getType()) + 1);
@@ -113,28 +121,24 @@ public class SentenceAnalyzer {
 						rootStats.put(w.getRoot(), 1);
 
 					if (wordStats.containsKey(w.toString())) {
-//						//itt kell az elotte es utana levoket
+
 						TreeMap<String, Integer> before = beforeType.get(w.getText());
 						TreeMap<String, Integer> after = afterType.get(w.getText());		
-//						
+			
 						String beforeText = i == 0 ? "nothing" : splittedTypes[i-1];
 						String afterText = i == splittedText.length - 1 ? "nothing" : splittedTypes[i+1];
-//						
-//						
-						if (!before.containsKey(beforeText)) {
+					
+						
+						if (!before.containsKey(beforeText)) 
 							before.put(beforeText, 1);
-						} else {
-							before.put(beforeText, before.get(beforeText) + 1);
-						}
-//				
-						if (!after.containsKey(afterText)) {
+						else 
+							before.put(beforeText, before.get(beforeText) + 1);	
+						
+						if (!after.containsKey(afterText)) 
 							after.put(afterText, 1);
-						} else {
+						else 
 							after.put(afterText, after.get(afterText) + 1);
-						}
-//						
-//						
-//						
+						
 						beforeType.put(w.getText(), before);
 						afterType.put(w.getText(), after);
 						
@@ -158,34 +162,19 @@ public class SentenceAnalyzer {
 							afterType.put(w.getText(), after);
 						}
 						
-//						
 						typeMap.put(w.getText(), w.getType());
+						domainMap.put(w.getText(), w.getDomain());
 						
 						words.add(w);
 						wordStats.put(w.toString(), 1);
 					}
 				}
-
-				// sentences.add(new Sentence(words, wn));
 				sb = new StringBuilder();
 				line = br.readLine();
 			}
-
-			// everything = sb.toString();
 		} catch (Exception e) {
-			// e.printStackTrace();
+			//e.printStackTrace();
 		} finally {
-			// PrintWriter w = new PrintWriter("alma.txt");
-
-			// System.out.println(entriesSortedByValues(wordStats).size());
-			// w.write(entriesSortedByValues(rootStats).toString() + "\n" +
-			// entriesSortedByValues(wordStats).toString());
-			// for (Entry<String, Integer> s : entriesSortedByValues(wordStats))
-			// {
-			// w.write(s.toString() + "\n");
-			// }
-
-			// w.close();
 			sortedWordStats = entriesSortedByValues(wordStats);
 			sortedRootStats = entriesSortedByValues(rootStats);
 			sortedTypeStats = entriesSortedByValues(typeStats);
@@ -359,27 +348,28 @@ public class SentenceAnalyzer {
 		return result;
 	}
 
+	/**
+	 * Returns a word, that corresponds to the statistics gotten from senteces.txt
+	 * @return
+	 */
 	public Word getWord() {
 		double a = r.nextDouble();
-		//System.out.println(a);
 		if (a < 0.1) {
 			return wn.getRandomWord();
 		}
-		//System.out.println(typeStats);
 		int b = r.nextInt(typeStats.get("Verb"));
-		//System.out.println(b);
-		for (int i = 0; i < typeStats.size(); i++) {
-			if (b < getIthTypeStat(i)) {
+		for (int i = 0; i < typeStats.size(); i++) 
+			if (b < getIthTypeStat(i)) 
 				return getOneWordWithType(typeStats.keySet().toArray()[i].toString()); 
-			}
-		
-		}
+			
 		return null;
-		// return randomByStats(r);
 	}
+	
+	
 	private Integer getIthTypeStat(int i) {
 		return typeStats.get(typeStats.keySet().toArray()[i]);
 	}
+	
 	
 	private Word getOneWordWithType(String type) {
 		if (!wordListByType.containsKey(type)) {
@@ -391,20 +381,17 @@ public class SentenceAnalyzer {
 			System.out.println("CumSum result " + type);
 			result = cumSum(result);
 			wordListByType.put(type,result);
-			//System.out.println(result);
 		}
+		
 		Map<Word,Integer> result = wordListByType.get(type);
 		Object[] resultSet = result.keySet().toArray();
 		
 		int a = r.nextInt(result.get(resultSet[resultSet.length-1]));
-		//System.out.println(a);
 
-
-		for (int i = 0; i < result.size(); i++) {
-			if (a <= getIthResultStat(i, result, resultSet)) {
+		for (int i = 0; i < result.size(); i++) 
+			if (a <= getIthResultStat(i, result, resultSet)) 
 				return (Word) resultSet[i];
-			}
-		}
+			
 		return null;
 	}
 	
@@ -425,4 +412,7 @@ public class SentenceAnalyzer {
 		return typeMap.get(a);
 	}
 	
+	public String getWordDomain(String a) {
+		return domainMap.get(a);
+	}
 }

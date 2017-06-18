@@ -9,20 +9,23 @@ import com.ktim1435.wordnet.SentenceAnalyzer;
 import com.ktim1435.wordnet.WordNet;
 
 public class GeneticAlgorithm {
-	public int MUTATION_PERCENT = 5;
-	public int ROWCOUNT = 4;
-	public int SPECIMEN_COUNT = 20;
-	public int MAX_WORD_COUNT = 5;
-	public int MIN_WORD_COUNT = 2;
+	private String DOMAIN = "ANYTHING";
+	private int MUTATION_PERCENT = 5;
+	private int ROWCOUNT = 4;
+	private int SPECIMEN_COUNT = 20;
+	private int MAX_WORD_COUNT = 5;
+	private int MIN_WORD_COUNT = 2;
 	public WordNet wn;
 	public SentenceAnalyzer sa;
 	private Generation currentGeneration = null;
 	private Generation newGeneration = null;
 	private Random r = new Random();
 
-	public GeneticAlgorithm(WordNet wn, SentenceAnalyzer sa) {
+	public GeneticAlgorithm(WordNet wn, SentenceAnalyzer sa, int mutPerc, String domain) {
 		this.wn = wn;
 		this.sa = sa;
+		this.MUTATION_PERCENT = mutPerc;
+		this.DOMAIN = domain;
 	}
 
 	public Line getOneLine() {
@@ -65,7 +68,7 @@ public class GeneticAlgorithm {
 		for (int i = 0; i < SPECIMEN_COUNT; i++) {
 			verses.add(getOneVerse());
 		}
-		currentGeneration = new Generation(verses, sa);
+		currentGeneration = new Generation(verses, sa, DOMAIN);
 
 		return currentGeneration;
 	}
@@ -115,7 +118,7 @@ public class GeneticAlgorithm {
 		
 		System.out.println("Finished new generation of specimens\n");
 		
-		currentGeneration = new Generation(finalSpecimens, sa);
+		currentGeneration = new Generation(finalSpecimens, sa, DOMAIN);
 	
 		
 		return currentGeneration;
@@ -128,33 +131,25 @@ public class GeneticAlgorithm {
 		int val = r.nextInt(100) + 1;
 		if (val < MUTATION_PERCENT) {
 			firstv.switchup(); // change two words between one another
-		//	System.out.println("First switchup");
 		} else if (val < 2 * MUTATION_PERCENT) {
 			firstv.addWord(sa, MAX_WORD_COUNT); // add a new word to a random
-		//	System.out.println("First add");
 												// place
 		} else if (val < 3 * MUTATION_PERCENT) {
 			firstv.deleteWord(MIN_WORD_COUNT); // remove a word from a random
-		//	System.out.println("First delete");
 		} else if (val < 4 * MUTATION_PERCENT) {
 			firstv.changeWord(sa); // change a word to a new word at a random
-		//	System.out.println("First change");
 									// position
 		}
 		
 		val = r.nextInt(100) + 1;
 		if (val < MUTATION_PERCENT) {
 			secondv.switchup(); // change two words between one another
-		//	System.out.println("Second switchup");
 		} else if (val < 2 * MUTATION_PERCENT) {
 			secondv.addWord(sa, MAX_WORD_COUNT); // add a new word to a random
-		//	System.out.println("Second add");	// place
 		} else if (val < 3 * MUTATION_PERCENT) {
 			secondv.deleteWord(MIN_WORD_COUNT); // remove a word from a random
-		//	System.out.println("Second delete");// place
 		} else if (val < 4 * MUTATION_PERCENT) {
 			secondv.changeWord(sa); // change a word to a new word at a random
-		//	System.out.println("Second change"); // position
 		}
 		
 		int row11 = r.nextInt(ROWCOUNT);
