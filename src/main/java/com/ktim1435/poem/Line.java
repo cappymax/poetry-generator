@@ -174,7 +174,6 @@ public class Line implements PoeticElement {
 		int s = 0;
 		for (int i = 0; i < words.length; i++) {
 			if (string.equals("ANYTHING") || acceptedDomains.contains(sa.getWordDomain(words[i]))) {
-				if (string.equals("LOVE")) System.out.println("LOL");
 				s += 4;
 			}
 		}

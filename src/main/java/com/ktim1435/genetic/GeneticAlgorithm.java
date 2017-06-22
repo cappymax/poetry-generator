@@ -21,9 +21,10 @@ public class GeneticAlgorithm {
 	private Generation newGeneration = null;
 	private Random r = new Random();
 
-	public GeneticAlgorithm(WordNet wn, SentenceAnalyzer sa, int mutPerc, String domain) {
+	public GeneticAlgorithm(WordNet wn, SentenceAnalyzer sa,int specCount, int mutPerc, String domain) {
 		this.wn = wn;
 		this.sa = sa;
+		this.SPECIMEN_COUNT = specCount;
 		this.MUTATION_PERCENT = mutPerc;
 		this.DOMAIN = domain;
 	}
@@ -89,7 +90,7 @@ public class GeneticAlgorithm {
 		for (int i = 0; i < SPECIMEN_COUNT / 2; i++) {
 			used.remove(i);
 			used.add(i, 1);
-			finalSpecimens.add(mutate(newSpecimens.get(i))); // always keep the best 50% intact, maybe mutate
+			finalSpecimens.add(mutate(mutate(newSpecimens.get(i)))); // always keep the best 50% intact, maybe mutate
 		}
 		
 		
@@ -163,33 +164,29 @@ public class GeneticAlgorithm {
 			row22 = r.nextInt(ROWCOUNT);
 		
 
-		
 		ArrayList<Line> firstLines = firstv.getLines();	
 		ArrayList<Line> secondLines = secondv.getLines();
+		
 		
 		Line line11 = firstLines.get(row11);
 		Line line12 = firstLines.get(row12);
 		Line line21 = secondLines.get(row21);
 		Line line22 = secondLines.get(row22);
 		
-		
-		
-		firstLines.remove(row11);
-		firstLines.add(row11, line21);
-		
-		firstLines.remove(row12);
-		firstLines.add(row12, line22);
-		
-		secondLines.remove(row21);
-		secondLines.add(row21, line11);
-		
-		secondLines.remove(row22);
-		secondLines.add(row22, line12);
+		ArrayList<Line> firstLines2 = new ArrayList<Line>();
+		ArrayList<Line> secondLines2 = new ArrayList<Line>();
+		for (int i = 0; i < ROWCOUNT; i++) {
+			if (i == row11) firstLines2.add(line21);
+			if (i == row12) firstLines2.add(line22);
+			if (i == row21) secondLines2.add(line11);
+			if (i == row22) secondLines2.add(line12);
+			firstLines2.add(firstLines.get(i));
+			secondLines2.add(secondLines.get(i));
+		}
 		
 		Verse firstv2 = new Verse(firstLines);
 		Verse secondv2 = new Verse(secondLines);
-		
-		
+
 		ArrayList<Verse> specimens = new ArrayList<Verse>();
 		
 		specimens.add(firstv2);
