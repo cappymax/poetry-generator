@@ -1,8 +1,11 @@
 package com.ktim1435.wordnet;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
@@ -82,14 +85,15 @@ public class SentenceAnalyzer {
 	}
 
 	public void readSentenceFile() throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("sentences.txt"));
+		BufferedReader br  = new BufferedReader(
+			    new InputStreamReader(new FileInputStream(new File("sentences.txt")),"UTF-8"));
 		try {
 			System.out.println("Reading sentence file");
 			StringBuilder sb = new StringBuilder();
 			String line = br.readLine();
 			String thisLine;
 			String[] splittedLine, splittedText, splittedRoots, splittedTypes;
-
+			
 			int q = 0;
 
 			while (line != null) {

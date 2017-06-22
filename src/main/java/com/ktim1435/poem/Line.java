@@ -156,8 +156,6 @@ public class Line implements PoeticElement {
 			acceptedDomains.add("factotum");
 			acceptedDomains.add("sexuality");
 			acceptedDomains.add("art");
-			acceptedDomains.add("free_time");
-			acceptedDomains.add("free time");
 			acceptedDomains.add("money");
 			acceptedDomains.add("dance");
 			acceptedDomains.add("theatre");
@@ -169,6 +167,17 @@ public class Line implements PoeticElement {
 			acceptedDomains.add("sculpture");
 			acceptedDomains.add("painting");
 			acceptedDomains.add("NODOM");
+		}
+		if (string.equals("FREETIME")){
+			acceptedDomains.add("factotum");
+			acceptedDomains.add("NODOM");
+			acceptedDomains.add("free_time");
+			acceptedDomains.add("free time");
+			acceptedDomains.add("theatre");
+			acceptedDomains.add("cinema");
+			acceptedDomains.add("fishing");
+			acceptedDomains.add("hunting");
+			acceptedDomains.add("rowing");
 		}
 		String[] words = text.split(" ");
 		int s = 0;

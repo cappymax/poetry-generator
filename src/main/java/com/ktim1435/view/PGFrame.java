@@ -138,7 +138,7 @@ public class PGFrame extends JFrame{
     	domainLabel.setFont(new java.awt.Font(null, 0, 20));
     	domainLine.add(domainLabel);
     	
-    	String[] domains = { "ANYTHING", "LOVE" };
+    	String[] domains = { "ANYTHING", "LOVE", "FREETIME" };
     	domainSelect = new JComboBox<String>(domains);
     	domainSelect.setFont(new java.awt.Font(null, 0, 20));
     	domainLine.add(domainSelect);
@@ -171,10 +171,6 @@ public class PGFrame extends JFrame{
 						if (wn == null)
 							wn = new WordNet();
 						
-//						ArrayList<String> domains = wn.getDomains();
-				    	
-//				    	for(String s : domains)
-//						System.out.println(s);
 						if (sa == null) {
 					    	sa = new SentenceAnalyzer(wn);
 							status.setText("Starting the simulation...Reading senteces.txt");
@@ -294,6 +290,7 @@ public class PGFrame extends JFrame{
 	}
 	
 	private void writeToStatisticsFile(String val, PrintWriter writer) {    
+	
 		    writer.println(val);
 	}
 	
