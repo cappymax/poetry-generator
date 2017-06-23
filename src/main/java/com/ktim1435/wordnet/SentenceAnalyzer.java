@@ -251,9 +251,6 @@ public class SentenceAnalyzer {
 			System.out.println("CumSum types");
 			typeStats = cumSum(typeStats);
 			
-
-
-			// w.write(rootStats.toString().replace(' ', '\n'));
 			System.out.println("Done reading");
 			br.close();
 		}

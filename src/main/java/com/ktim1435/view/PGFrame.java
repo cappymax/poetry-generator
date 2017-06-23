@@ -44,9 +44,6 @@ public class PGFrame extends JFrame{
 	private JLabel 	numberOfSpecimensLabel;
 	private JSpinner numberOfSpecimens;
 	
-	
-
-	
 	private JLabel mutationPercentageLabel;
 	private JSpinner mutationPercentage;
 	private JLabel percentageSign;
@@ -290,7 +287,6 @@ public class PGFrame extends JFrame{
 	}
 	
 	private void writeToStatisticsFile(String val, PrintWriter writer) {    
-	
 		    writer.println(val);
 	}
 	

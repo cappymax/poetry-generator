@@ -25,7 +25,7 @@ public class Sentence {
 				words.add(new Word(aWord, wn.getType(aWord)));
 			} catch (Exception e) {
 				//do nothing
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		
 		return words;

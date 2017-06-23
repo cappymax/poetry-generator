@@ -138,28 +138,29 @@ public class Verse implements PoeticElement {
 		for (int i = 0; i < lines.size(); i++) {
 			s += lines.get(i).calculateSemantics(sa);
 		}
-		int repeating = 0;
-		for (int i = 0; i < lines.size() - 1; i++) {
-			for (int j = i + 1; j < lines.size(); j++) {
-				if (lines.get(i).getText().equals(lines.get(j).getText())) repeating++;
-			}
-		}
-		HashMap<String, Integer> wordsMap = new HashMap<String, Integer>();
-		for (int i = 0; i < lines.size(); i++) {
-			String[] words = lines.get(0).toString().split(" ");
-			for (int j = 0; j < words.length; j++) {
-				words[j] = words[j].toLowerCase();
-				if (wordsMap.containsKey(words[j])) {
-					wordsMap.put(words[j], wordsMap.get(words[j])+1);
-				} else {
-					wordsMap.put(words[j], 1);
-				}
-			}
-		}
-		int s2 = 0;
-		for (String k : wordsMap.keySet()) {
-			s2 += wordsMap.get(k);
-		}
+//		if repeating is in need of fixing, uncomment
+//		int repeating = 0;
+//		for (int i = 0; i < lines.size() - 1; i++) {
+//			for (int j = i + 1; j < lines.size(); j++) {
+//				if (lines.get(i).getText().equals(lines.get(j).getText())) repeating++;
+//			}
+//		}
+//		HashMap<String, Integer> wordsMap = new HashMap<String, Integer>();
+//		for (int i = 0; i < lines.size(); i++) {
+//			String[] words = lines.get(0).toString().split(" ");
+//			for (int j = 0; j < words.length; j++) {
+//				words[j] = words[j].toLowerCase();
+//				if (wordsMap.containsKey(words[j])) {
+//					wordsMap.put(words[j], wordsMap.get(words[j])+1);
+//				} else {
+//					wordsMap.put(words[j], 1);
+//				}
+//			}
+//		}
+//		int s2 = 0;
+//		for (String k : wordsMap.keySet()) {
+//			s2 += wordsMap.get(k);
+//		}
 		
 		return (s / lines.size());// - repeating - (s2 / wordsMap.size());
 	}

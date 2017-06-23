@@ -58,7 +58,6 @@ public class Gramatics {
 	}
 
 	private static List<Line> setPunctuation(List<Line> lines) {
-		// TODO Set punctuation
 		return lines;
 	}
 }

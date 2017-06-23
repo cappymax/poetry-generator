@@ -142,7 +142,7 @@ public class Line implements PoeticElement {
 			}
 
 			catch (Exception e) {
-				// System.out.println(sa.getWordType(words[i-1].toLowerCase()));
+				
 			}
 		}
 

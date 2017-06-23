@@ -348,7 +348,6 @@ public class WordNet {
 				}
 			}
 		}
-		// System.out.println(longestSubword.getType());
 		return longestSubword;
 	}
 
